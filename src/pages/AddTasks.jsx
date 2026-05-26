@@ -22,14 +22,16 @@ const [showInput, setShowInput] = useState(false);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
- const handleSubmit = (e) => {
-  e.preventDefault();
-
-  if (!task.trim()) {
-    toast.error("Task cannot be empty.", {
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!task.trim()) return;
+
+    if (!task.trim()) {
+      toast.error("Task cannot be empty.", {
+        style: { background: "#000000", color: "#ffffff" },
+      });
+      return;
+    }
+
     const newTask = {
       id: Date.now(),
       text: task,
@@ -38,19 +40,12 @@ const [showInput, setShowInput] = useState(false);
       completed: false,
       createdAt: new Date().toISOString(),
     };
+
     setTasks([...tasks, newTask]);
     toast.success("Task successfully added to roadmap.", {
       style: { background: "#000000", color: "#ffffff" },
     });
-    return;
-  }
-
-  const newTask = {
-    id: Date.now(),
-    text: task,
-    category,
-    priority,
-    completed: false,
+    setTask("");
   };
 
   const handleAddCategory = () => {

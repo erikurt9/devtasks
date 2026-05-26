@@ -198,24 +198,6 @@ const ListTasks = () => {
       style: { background: '#000000', color: '#ffffff' },
     })
   }
-    }));
-    const updatedTasks = tasks.filter((task) => !task.completed);
-
-    localStorage.setItem(
-      "deleted_tasks",
-      JSON.stringify([...deletedTasks, ...completedWithTimestamps])
-    );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setTasks(updatedTasks);
-
-    toast.success(
-      `${completedTasks.length} completed ${completedTasks.length === 1 ? "task" : "tasks"
-      } moved to delete history.`,
-      {
-        style: { background: "#000000", color: "#ffffff" },
-      }
-    );
-  };
 
   const toggleComplete = (id) => {
     const updatedTasks = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task))
@@ -275,13 +257,6 @@ const ListTasks = () => {
               ? 'bg-zinc-800 text-white border-zinc-700 focus:border-white placeholder-zinc-500'
               : 'bg-neutral-50 text-black border-neutral-200 focus:border-black placeholder-neutral-400'
           }`}
-        />
-
-          className={`w-full mb-4 px-4 py-3 rounded-2xl border-2 outline-none font-black uppercase tracking-widest text-sm transition-all duration-200
-    ${dark
-              ? 'bg-zinc-800 text-white border-zinc-700 focus:border-white placeholder-zinc-500'
-              : 'bg-neutral-50 text-black border-neutral-200 focus:border-black placeholder-neutral-400'
-            }`}
         />
 
         {/* Sorting Controls */}
@@ -359,25 +334,12 @@ const ListTasks = () => {
                   ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white'
                   : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black'
               }`}
-              className={`px-4 py-2 rounded-xl border font-black text-xs uppercase tracking-widest transition-all duration-200 cursor-pointer ${dark
-                  ? "border-zinc-600 text-neutral-300 hover:border-white hover:text-white"
-                  : "border-neutral-300 text-neutral-600 hover:border-black hover:text-black"
-                }`}
             >
               Clear Completed
             </button>
           </div>
         )}
 
-        {filteredTasks.length === 0 ? (
-          <p className="text-center text-neutral-400 font-medium py-8">
-            {searchQuery
-              ? 'No tasks match your search.'
-              : filter === 'ACTIVE'
-                ? "No active tasks. You're all caught up!"
-                : filter === 'COMPLETED'
-                  ? 'No completed tasks yet.'
-                  : 'No tasks added yet.'}
         {sortedAndFilteredTasks.length === 0 ? (
           <p className="text-center text-neutral-400 font-medium py-8">
             {searchQuery
