@@ -27,6 +27,19 @@ const [showInput, setShowInput] = useState(false);
 
   if (!task.trim()) {
     toast.error("Task cannot be empty.", {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!task.trim()) return;
+    const newTask = {
+      id: Date.now(),
+      text: task,
+      category,
+      priority,
+      completed: false,
+      createdAt: new Date().toISOString(),
+    };
+    setTasks([...tasks, newTask]);
+    toast.success("Task successfully added to roadmap.", {
       style: { background: "#000000", color: "#ffffff" },
     });
     return;

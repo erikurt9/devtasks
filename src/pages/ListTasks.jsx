@@ -18,6 +18,9 @@ const ListTasks = () => {
   const [filter, setFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
 
+  const [sortType, setSortType] = useState("date");      // tracks which sort is active
+  const [sortOrder, setSortOrder] = useState("desc");    // tracks asc/desc direction
+
   const [editingId, setEditingId] = useState(null)
   const [editingText, setEditingText] = useState('')
   const [activeDropdownId, setActiveDropdownId] = useState(null)
@@ -30,6 +33,34 @@ const ListTasks = () => {
     const matchSearch = task.text.toLowerCase().includes(searchQuery.toLowerCase())
     return matchFilter && matchSearch
   })
+
+  const applySorting = (tasksToSort) => {
+    const sorted = [...tasksToSort];
+
+    if (sortType === 'priority') {
+      const priorityOrder = { HIGH: 3, MEDIUM: 2, LOW: 1 };
+      sorted.sort((a, b) => {
+        const aP = priorityOrder[a.priority] ?? 999;
+        const bP = priorityOrder[b.priority] ?? 999;
+        return sortOrder === 'asc' ? aP - bP : bP - aP;
+      });
+    } else if (sortType === 'alphabetical') {
+      sorted.sort((a, b) => {
+        const cmp = (a.text || '').toLowerCase().localeCompare((b.text || '').toLowerCase());
+        return sortOrder === 'asc' ? cmp : -cmp;
+      });
+    } else { // 'date' (default)
+      sorted.sort((a, b) => {
+        const aDate = new Date(a.createdAt || 0).getTime();
+        const bDate = new Date(b.createdAt || 0).getTime();
+        return sortOrder === 'asc' ? aDate - bDate : bDate - aDate;
+      });
+    }
+
+    return sorted;
+  };
+
+  const sortedAndFilteredTasks = applySorting(filteredTasks);
 
   const totalTasks = tasks.length
   const activeTasks = tasks.filter((task) => !task.completed).length
@@ -167,6 +198,24 @@ const ListTasks = () => {
       style: { background: '#000000', color: '#ffffff' },
     })
   }
+    }));
+    const updatedTasks = tasks.filter((task) => !task.completed);
+
+    localStorage.setItem(
+      "deleted_tasks",
+      JSON.stringify([...deletedTasks, ...completedWithTimestamps])
+    );
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+
+    toast.success(
+      `${completedTasks.length} completed ${completedTasks.length === 1 ? "task" : "tasks"
+      } moved to delete history.`,
+      {
+        style: { background: "#000000", color: "#ffffff" },
+      }
+    );
+  };
 
   const toggleComplete = (id) => {
     const updatedTasks = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task))
@@ -228,21 +277,71 @@ const ListTasks = () => {
           }`}
         />
 
+          className={`w-full mb-4 px-4 py-3 rounded-2xl border-2 outline-none font-black uppercase tracking-widest text-sm transition-all duration-200
+    ${dark
+              ? 'bg-zinc-800 text-white border-zinc-700 focus:border-white placeholder-zinc-500'
+              : 'bg-neutral-50 text-black border-neutral-200 focus:border-black placeholder-neutral-400'
+            }`}
+        />
+
+        {/* Sorting Controls */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-6 sm:items-center sm:justify-between">
+          <div className="flex gap-2 flex-wrap">
+            <button
+              onClick={() => setSortType('date')}
+              className={`px-4 py-2 rounded-xl border text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${sortType === 'date'
+                  ? (dark ? 'bg-white text-black border-white' : 'bg-black text-white border-black')
+                  : (dark ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black')
+                }`}
+            >
+              Date
+            </button>
+
+            <button
+              onClick={() => setSortType('priority')}
+              className={`px-4 py-2 rounded-xl border text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${sortType === 'priority'
+                  ? (dark ? 'bg-white text-black border-white' : 'bg-black text-white border-black')
+                  : (dark ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black')
+                }`}
+            >
+              Priority
+            </button>
+
+            <button
+              onClick={() => setSortType('alphabetical')}
+              className={`px-4 py-2 rounded-xl border text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${sortType === 'alphabetical'
+                  ? (dark ? 'bg-white text-black border-white' : 'bg-black text-white border-black')
+                  : (dark ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black')
+                }`}
+            >
+              A–Z
+            </button>
+          </div>
+
+          <button
+            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            className={`px-4 py-2 rounded-xl border text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${dark ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black'
+              }`}
+          >
+            {sortOrder === 'asc' ? '↑ ASC' : '↓ DESC'}
+          </button>
+        </div>
+
+        {/* Filter Navigation */}
         <div className="flex justify-center mb-6">
           <div className={`flex gap-2 p-1 border rounded-full ${dark ? 'border-zinc-700 bg-zinc-800' : 'border-neutral-200 bg-neutral-50'}`}>
             {FILTERS.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${
-                  filter === f
+                className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer ${filter === f
                     ? dark
                       ? 'bg-white text-black'
                       : 'bg-black text-white'
                     : dark
                       ? 'bg-transparent text-neutral-400 hover:text-white border border-transparent hover:border-zinc-600'
                       : 'bg-transparent text-neutral-400 hover:text-black border border-transparent hover:border-neutral-300'
-                }`}
+                  }`}
               >
                 {f} ({taskCounts[f]})
               </button>
@@ -260,6 +359,10 @@ const ListTasks = () => {
                   ? 'border-zinc-600 text-neutral-300 hover:border-white hover:text-white'
                   : 'border-neutral-300 text-neutral-600 hover:border-black hover:text-black'
               }`}
+              className={`px-4 py-2 rounded-xl border font-black text-xs uppercase tracking-widest transition-all duration-200 cursor-pointer ${dark
+                  ? "border-zinc-600 text-neutral-300 hover:border-white hover:text-white"
+                  : "border-neutral-300 text-neutral-600 hover:border-black hover:text-black"
+                }`}
             >
               Clear Completed
             </button>
@@ -275,10 +378,19 @@ const ListTasks = () => {
                 : filter === 'COMPLETED'
                   ? 'No completed tasks yet.'
                   : 'No tasks added yet.'}
+        {sortedAndFilteredTasks.length === 0 ? (
+          <p className="text-center text-neutral-400 font-medium py-8">
+            {searchQuery
+              ? "No tasks match your search."
+              : filter === "ACTIVE"
+                ? "No active tasks. You're all caught up!"
+                : filter === "COMPLETED"
+                  ? "No completed tasks yet."
+                  : "No tasks added yet."}
           </p>
         ) : (
           <ul className="space-y-4">
-            {filteredTasks.map((task) => (
+            {sortedAndFilteredTasks.map((task) => (
               <li
                 key={task.id}
                 className={`flex items-center justify-between rounded-2xl p-4 shadow-sm transition-colors duration-200 ${
@@ -322,9 +434,8 @@ const ListTasks = () => {
                           <button
                             type="button"
                             onClick={() => setActiveDropdownId(activeDropdownId === task.id ? null : task.id)}
-                            className={`text-[11px] font-black uppercase px-2 py-1 rounded-full cursor-pointer transition-all duration-200 ${
-                              dark ? 'bg-zinc-700 text-neutral-300 hover:bg-zinc-600' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
-                            }`}
+                            className={`text-[11px] font-black uppercase px-2 py-1 rounded-full cursor-pointer transition-all duration-200 ${dark ? 'bg-zinc-700 text-neutral-300 hover:bg-zinc-600' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                              }`}
                           >
                             {task.category ?? 'TASK'}
                           </button>
@@ -340,15 +451,14 @@ const ListTasks = () => {
                                   key={cat}
                                   type="button"
                                   onClick={() => updateCategory(task.id, cat)}
-                                  className={`text-[11px] font-black uppercase px-2 py-1 rounded-lg text-left transition-all duration-200 ${
-                                    task.category === cat
+                                  className={`text-[11px] font-black uppercase px-2 py-1 rounded-lg text-left transition-all duration-200 ${task.category === cat
                                       ? dark
                                         ? 'bg-white text-black'
                                         : 'bg-black text-white'
                                       : dark
                                         ? 'text-neutral-300 hover:bg-zinc-700'
                                         : 'text-neutral-700 hover:bg-neutral-100'
-                                  }`}
+                                    }`}
                                 >
                                   {cat}
                                 </button>
@@ -359,13 +469,12 @@ const ListTasks = () => {
 
                         {task.priority && (
                           <span
-                            className={`text-[11px] font-black uppercase px-2 py-1 rounded-full shrink-0 ${
-                              task.priority === 'HIGH'
+                            className={`text-[11px] font-black uppercase px-2 py-1 rounded-full shrink-0 ${task.priority === 'HIGH'
                                 ? 'bg-red-500/10 text-red-500'
                                 : task.priority === 'MEDIUM'
                                   ? 'bg-yellow-500/10 text-yellow-600'
                                   : 'bg-blue-500/10 text-blue-500'
-                            }`}
+                              }`}
                           >
                             {task.priority}
                           </span>
