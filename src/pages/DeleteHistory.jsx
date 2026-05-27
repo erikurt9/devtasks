@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { useTheme } from '../context/ThemeContext';
-import ThemeToggle from '../components/ThemeToggle';
-import { useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
+import ThemeToggle from "../components/ThemeToggle";
+
 const DeleteHistory = () => {
   const navigate = useNavigate();
   const { dark } = useTheme();
@@ -20,65 +20,69 @@ const DeleteHistory = () => {
     return [];
   });
 
- const handleWipeOut = () => {
-  toast("Are you sure you want to delete all history?", {
-    description: "This action cannot be undone.",
-    action: {
-      label: "Yes, Delete",
-      onClick: () => {
-        localStorage.removeItem('deleted_tasks');
-        setDeletedTasks([]);
-        toast.success("All data wiped successfully.");
+  const handleWipeOut = () => {
+    toast("Are you sure you want to delete all history?", {
+      description: "This action cannot be undone.",
+      action: {
+        label: "Yes, Delete",
+        onClick: () => {
+          localStorage.removeItem("deleted_tasks");
+          setDeletedTasks([]);
+          toast.success("All data wiped successfully.", {
+            style: { background: "#000000", color: "#ffffff" },
+          });
+        },
       },
-    },
-    cancel: {
-      label: "Cancel",
-      onClick: () => {
-        toast("Deletion cancelled");
+      cancel: {
+        label: "Cancel",
+        onClick: () => {
+          toast("Deletion cancelled", {
+            style: { background: "#000000", color: "#ffffff" },
+          });
+        },
       },
-    },
-  });
-};
+    });
+  };
 
-const restoreTask = (id) => {
-  const deleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const restoreTask = (id) => {
+    const deleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  const taskToRestore = deleted.find((task) => task.id === id);
-  if (!taskToRestore) return;
+    const taskToRestore = deleted.find((task) => task.id === id);
+    if (!taskToRestore) return;
 
-  const updatedDeletedTasks = deleted.filter((task) => task.id !== id);
-  const updatedTasks = [...tasks, taskToRestore];
+    const updatedDeletedTasks = deleted.filter((task) => task.id !== id);
+    const updatedTasks = [...tasks, taskToRestore];
 
-  localStorage.setItem("deleted_tasks", JSON.stringify(updatedDeletedTasks));
-  localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-  setDeletedTasks(updatedDeletedTasks);
+    localStorage.setItem("deleted_tasks", JSON.stringify(updatedDeletedTasks));
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setDeletedTasks(updatedDeletedTasks);
 
-  // 🔥 Toast with navigation + undo
-  toast("Task restored", {
-    description: "Moved back to roadmap",
-    action: {
-      label: "View Tasks",
-      onClick: () => navigate("/list-tasks"),
-    },
-    cancel: {
-      label: "Undo",
-      onClick: () => {
-        const currentTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        const currentDeleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
-
-        const revertedTasks = currentTasks.filter((t) => t.id !== id);
-        const revertedDeleted = currentDeleted.some((t) => t.id === id)
-          ? currentDeleted
-          : [...currentDeleted, taskToRestore];
-
-        localStorage.setItem("deleted_tasks", JSON.stringify(revertedDeleted));
-        localStorage.setItem("tasks", JSON.stringify(revertedTasks));
-        setDeletedTasks(revertedDeleted);
+    // Toast with navigation + undo
+    toast("Task restored", {
+      description: "Moved back to roadmap",
+      action: {
+        label: "View Tasks",
+        onClick: () => navigate("/list-tasks"),
       },
-    },
-  });
-};
+      cancel: {
+        label: "Undo",
+        onClick: () => {
+          const currentTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+          const currentDeleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
+
+          const revertedTasks = currentTasks.filter((t) => t.id !== id);
+          const revertedDeleted = currentDeleted.some((t) => t.id === id)
+            ? currentDeleted
+            : [...currentDeleted, taskToRestore];
+
+          localStorage.setItem("deleted_tasks", JSON.stringify(revertedDeleted));
+          localStorage.setItem("tasks", JSON.stringify(revertedTasks));
+          setDeletedTasks(revertedDeleted);
+        },
+      },
+    });
+  };
 
   const handleExport = () => {
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
@@ -154,7 +158,7 @@ const restoreTask = (id) => {
 
   return (
     <div
-      className={`h-screen w-full font-sans overflow-hidden flex flex-col p-8 transition-colors duration-300 ${
+      className={`min-h-screen md:h-screen w-full font-sans overflow-y-auto md:overflow-hidden flex flex-col p-4 md:p-8 transition-colors duration-300 ${
         dark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -171,7 +175,7 @@ const restoreTask = (id) => {
 
       <div className="max-w-6xl w-full mx-auto flex flex-col h-full">
         {/* Header */}
-        <header className="shrink-0 mb-12 flex justify-between items-end">
+        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="animate-in fade-in slide-in-from-left duration-700">
             <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
               System Logs
@@ -200,9 +204,7 @@ const restoreTask = (id) => {
               {deletedTasks.length === 0 ? (
                 <div
                   className={`text-center font-medium py-10 border border-dashed rounded-2xl ${
-                    dark
-                      ? "text-gray-500 border-gray-700"
-                      : "text-gray-400 border-gray-200"
+                    dark ? "text-gray-500 border-gray-700" : "text-gray-400 border-gray-200"
                   }`}
                 >
                   No deleted tasks found
@@ -211,7 +213,7 @@ const restoreTask = (id) => {
                 deletedTasks.map((task) => (
                   <div
                     key={task.id}
-                    className={`group border rounded-2xl px-5 py-4 flex items-center justify-between transition-all duration-300 cursor-default ${
+                    className={`group border rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300 cursor-default ${
                       dark
                         ? "border-white/10 bg-zinc-900 hover:bg-white hover:text-black"
                         : "border-black/10 bg-white hover:bg-black hover:text-white"
@@ -226,7 +228,7 @@ const restoreTask = (id) => {
                       </span>
                     </div>
 
-                    <div className="text-right flex flex-col items-end gap-3">
+                    <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start w-full sm:w-auto gap-3">
                       <div>
                         <div className="text-xs font-medium text-gray-500 group-hover:text-gray-200 transition-colors duration-300">
                           {task.deletedAt
@@ -293,67 +295,32 @@ const restoreTask = (id) => {
                 <div className="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </button>
 
-              <div className="flex items-center justify-center">
-                <Link to="/list-tasks">
-                  <button
-                    className={`px-5 py-2 cursor-pointer  rounded-2xl text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${
-                      dark
-                        ? "bg-zinc-800 text-white border-zinc-700 hover:bg-zinc-700"
-                        : "bg-neutral-100 text-black border-neutral-200 hover:bg-neutral-200"
-                    }`}
-                  >
-                    Task List
-                  </button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-6 border-t border-neutral-100 dark:border-zinc-800 pt-6">
+                <Link
+                  to="/list-tasks"
+                  className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
+                    dark
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  <span>Task List</span>
+                </Link>
+
+                <Link
+                  to="/data-center"
+                  className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
+                    dark
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  <span>Data Center</span>
+                  <span>→</span>
                 </Link>
               </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={handleImport}
-                  className={`py-3.5 border rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
-                    dark
-                      ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300"
-                      : "border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700"
-                  }`}
-                >
-                  Import Data
-                </button>
-                <button
-                  onClick={handleExport}
-                  className={`py-3.5 border rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${
-                    dark
-                      ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300"
-                      : "border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700"
-                  }`}
-                >
-                  Export Backup
-                </button>
-              </div>
-              <Link
-                to="/data-center"
-                className={`flex items-center justify-between px-5 py-4 rounded-2xl border transition-all duration-300 ${
-                  dark
-                    ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300"
-                    : "border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700"
-                }`}
-              >
-                <span className="text-xs font-black uppercase tracking-widest">
-                  Go to Data Center for backups 
-                </span>
-              
-                <span className="text-lg">→</span>
-              
-              </Link>  
-
             </div>
           </div>
-        </div>
-
-        {/* Decorative element */}
-        <div className="shrink-0 mt-8 pt-8 border-t border-gray-50 opacity-10">
-          <h2 className="text-[12vw] font-black tracking-tighter leading-none select-none text-center">
-            PURGE
-          </h2>
         </div>
       </div>
     </div>
