@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useTheme } from "../../../context/ThemeContext";
@@ -6,9 +6,14 @@ import ThemeToggle from "../../../components/ThemeToggle";
 
 const DataCenter = () => {
   const { dark } = useTheme();
-  const fileInputRef = useRef(null);
 
-  const [snippetStats, setSnippetStats] = useState({ total: 0, git: 0, docker: 0, npm: 0, other: 0 });
+  const [snippetStats, setSnippetStats] = useState({
+    total: 0,
+    git: 0,
+    docker: 0,
+    npm: 0,
+    other: 0,
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem("dev_snippets");
@@ -44,14 +49,13 @@ const DataCenter = () => {
       type: "application/json",
     });
 
-    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
+    a.href = URL.createObjectURL(blob);
     a.download = `snippets-backup-${Date.now()}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(a.href);
 
     toast.success("Snippet vault backed up successfully!", {
       style: { background: "#000000", color: "#ffffff" },
@@ -99,13 +103,15 @@ const DataCenter = () => {
           other: parsed.snippets.filter((s) => s.category === "OTHER").length,
         });
 
-        toast.success(`Import completed! Loaded ${parsed.snippets.length} snippets.`, {
-          style: { background: "#000000", color: "#ffffff" },
-        });
+        toast.success(
+          `Import completed! Loaded ${parsed.snippets.length} snippets.`,
+          { style: { background: "#000000", color: "#ffffff" } }
+        );
       } catch {
-        toast.error("Parsing failed — ensure file is a valid DevTasks JSON backup.", {
-          style: { background: "#000000", color: "#ffffff" },
-        });
+        toast.error(
+          "Parsing failed — ensure file is a valid DevTasks JSON backup.",
+          { style: { background: "#000000", color: "#ffffff" } }
+        );
       }
     };
 
@@ -119,24 +125,26 @@ const DataCenter = () => {
         dark ? "bg-zinc-950" : "bg-[#F7F7F7]"
       }`}
     >
-      <title>Data Center — Snippet Backup Registry</title>
-
       {/* AMBIENT GLOWS */}
       <div
+        aria-hidden="true"
         className={`absolute top-[-120px] right-[-120px] w-[280px] sm:w-[420px] h-[280px] sm:h-[420px] rounded-full blur-3xl opacity-40 ${
           dark ? "bg-zinc-800" : "bg-neutral-200"
         }`}
       />
       <div
+        aria-hidden="true"
         className={`absolute bottom-[-120px] left-[-120px] w-[280px] sm:w-[420px] h-[280px] sm:h-[420px] rounded-full blur-3xl opacity-40 ${
           dark ? "bg-zinc-900" : "bg-neutral-100"
         }`}
       />
 
-      {/* MAIN GLASS CARD */}
+      {/* MAIN GLASS CARD — fix 2: backdrop-blur-xl + translucent bg */}
       <div
-        className={`relative z-10 w-full max-w-2xl rounded-[32px] border shadow-2xl overflow-hidden transition-all duration-300 ${
-          dark ? "bg-zinc-900 border-zinc-800" : "bg-white border-neutral-200"
+        className={`relative z-10 w-full max-w-2xl rounded-[32px] border shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-300 ${
+          dark
+            ? "bg-zinc-900/80 border-zinc-800"
+            : "bg-white/80 border-neutral-200"
         }`}
       >
         {/* TOP ACCENT BAR */}
@@ -163,19 +171,25 @@ const DataCenter = () => {
         <div className="px-5 sm:px-8 pt-6">
           <div
             className={`p-4 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
-              dark ? "bg-zinc-950 border-zinc-850" : "bg-neutral-50 border-neutral-200"
+              dark
+                ? "bg-zinc-950/60 border-zinc-800"
+                : "bg-neutral-50 border-neutral-200"
             }`}
           >
             <div>
               <div className="text-[10px] font-black tracking-widest text-neutral-400 uppercase">
                 Vault Inventory
               </div>
-              <div className={`text-base font-black uppercase mt-0.5 ${dark ? "text-white" : "text-black"}`}>
+              <div
+                className={`text-base font-black uppercase mt-0.5 ${
+                  dark ? "text-white" : "text-black"
+                }`}
+              >
                 {snippetStats.total} snippets ready
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 text-[9px] font-black uppercase tracking-wider text-neutral-500">
+            <div className="flex flex-wrap gap-2 text-[9px] font-black uppercase tracking-wider">
               {[
                 { label: "Git", value: snippetStats.git },
                 { label: "Docker", value: snippetStats.docker },
@@ -185,7 +199,9 @@ const DataCenter = () => {
                 <span
                   key={label}
                   className={`px-2 py-1 rounded-lg ${
-                    dark ? "bg-zinc-800 text-zinc-300" : "bg-white border border-gray-200 text-gray-700"
+                    dark
+                      ? "bg-zinc-800 text-zinc-300"
+                      : "bg-white border border-gray-200 text-gray-700"
                   }`}
                 >
                   {value} {label}
@@ -202,17 +218,41 @@ const DataCenter = () => {
             {/* EXPORT CARD */}
             <div
               className={`p-6 rounded-[24px] border flex flex-col justify-between h-[210px] transition-all duration-300 ${
-                dark ? "bg-zinc-850/40 border-zinc-800" : "bg-neutral-50 border-neutral-250"
+                dark
+                  ? "bg-zinc-800/40 border-zinc-800"
+                  : "bg-neutral-50 border-neutral-200"
               }`}
             >
               <div>
                 <div className="flex items-center gap-2.5 mb-3">
-                  <div className={`p-2.5 rounded-xl ${dark ? "bg-indigo-500/10 text-indigo-400" : "bg-indigo-50 text-indigo-600"}`}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0-12L8 8m4-4l4 4" />
+                  <div
+                    aria-hidden="true"
+                    className={`p-2.5 rounded-xl ${
+                      dark
+                        ? "bg-indigo-500/10 text-indigo-400"
+                        : "bg-indigo-50 text-indigo-600"
+                    }`}
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0-12L8 8m4-4l4 4"
+                      />
                     </svg>
                   </div>
-                  <h2 className={`font-black text-sm uppercase tracking-wider ${dark ? "text-white" : "text-black"}`}>
+                  <h2
+                    className={`font-black text-sm uppercase tracking-wider ${
+                      dark ? "text-white" : "text-black"
+                    }`}
+                  >
                     Backup Vault
                   </h2>
                 </div>
@@ -221,10 +261,15 @@ const DataCenter = () => {
                 </p>
               </div>
 
+              {/* fix 3: type="button" */}
               <button
+                type="button"
                 onClick={handleExport}
-                className={`w-full py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${
-                  dark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
+                aria-label="Export snippets as JSON backup"
+                className={`w-full py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all duration-300 cursor-pointer ${
+                  dark
+                    ? "bg-white text-black hover:bg-neutral-200 border-white"
+                    : "bg-black text-white hover:bg-neutral-800 border-black"
                 }`}
               >
                 Export JSON
@@ -234,17 +279,41 @@ const DataCenter = () => {
             {/* IMPORT CARD */}
             <div
               className={`p-6 rounded-[24px] border flex flex-col justify-between h-[210px] transition-all duration-300 ${
-                dark ? "bg-zinc-850/40 border-zinc-800" : "bg-neutral-50 border-neutral-250"
+                dark
+                  ? "bg-zinc-800/40 border-zinc-800"
+                  : "bg-neutral-50 border-neutral-200"
               }`}
             >
               <div>
                 <div className="flex items-center gap-2.5 mb-3">
-                  <div className={`p-2.5 rounded-xl ${dark ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-50 text-emerald-600"}`}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 16V4m0 12l-4-4m4 4l4-4" />
+                  <div
+                    aria-hidden="true"
+                    className={`p-2.5 rounded-xl ${
+                      dark
+                        ? "bg-emerald-500/10 text-emerald-400"
+                        : "bg-emerald-50 text-emerald-600"
+                    }`}
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 16V4m0 12l-4-4m4 4l4-4"
+                      />
                     </svg>
                   </div>
-                  <h2 className={`font-black text-sm uppercase tracking-wider ${dark ? "text-white" : "text-black"}`}>
+                  <h2
+                    className={`font-black text-sm uppercase tracking-wider ${
+                      dark ? "text-white" : "text-black"
+                    }`}
+                  >
                     Restore Vault
                   </h2>
                 </div>
@@ -253,24 +322,25 @@ const DataCenter = () => {
                 </p>
               </div>
 
+              {/* fix 3: type="button" on label not needed, but input is non-submit by nature */}
               <input
-                ref={fileInputRef}
+                id="snippet-import"
                 type="file"
-                accept=".json"
+                accept="application/json"
                 onChange={handleImport}
                 className="hidden"
+                aria-label="Select a JSON backup file to import"
               />
-
-              <button
-                onClick={() => fileInputRef.current.click()}
-                className={`w-full py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${
+              <label
+                htmlFor="snippet-import"
+                className={`w-full py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all duration-300 cursor-pointer text-center block ${
                   dark
                     ? "bg-zinc-800 border-zinc-700 text-white hover:border-white"
                     : "bg-white border-neutral-300 text-black hover:border-black"
                 }`}
               >
                 Upload Backup
-              </button>
+              </label>
             </div>
 
           </div>
@@ -281,7 +351,9 @@ const DataCenter = () => {
           <Link
             to="/snippetvault"
             className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-              dark ? "text-neutral-400 hover:text-white" : "text-neutral-500 hover:text-black"
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
             }`}
           >
             <span>←</span>
@@ -292,7 +364,9 @@ const DataCenter = () => {
             <Link
               to="/snippetvault/list"
               className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-                dark ? "text-neutral-400 hover:text-white" : "text-neutral-500 hover:text-black"
+                dark
+                  ? "text-neutral-400 hover:text-white"
+                  : "text-neutral-500 hover:text-black"
               }`}
             >
               Snippet List
@@ -301,7 +375,9 @@ const DataCenter = () => {
             <Link
               to="/snippetvault/delete-history"
               className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-                dark ? "text-neutral-400 hover:text-white" : "text-neutral-500 hover:text-black"
+                dark
+                  ? "text-neutral-400 hover:text-white"
+                  : "text-neutral-500 hover:text-black"
               }`}
             >
               Deleted Snippets
