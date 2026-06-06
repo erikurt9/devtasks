@@ -51,6 +51,7 @@ function AppInner({ toggleHUD, hudVisible }) {
         <Route path="/taskmanage/data-center" element={<DataCenter />} />
         <Route path="/snippetvault" element={<SnippetVault />} />
         <Route path="/snippetvault/add" element={<AddSnippet />} />
+        <Route path="/snippetvault/edit/:id" element={<AddSnippet />} />
         <Route path="/snippetvault/list" element={<ListSnippets />} />
         <Route path="/snippetvault/delete-history" element={<DeleteHistorySnippet />} />
         <Route path="/snippetvault/data-center" element={<DataCenterSnippet />} />
