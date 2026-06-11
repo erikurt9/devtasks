@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import ThemeToggle from "./ThemeToggle";
+import StorageGauge from "./StorageGauge";
 
 const Navbar = () => {
   const { dark } = useTheme();
@@ -71,6 +72,7 @@ const Navbar = () => {
           {/* Actions on desktop */}
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
+            <StorageGauge />
           </div>
         </div>
       </div>
