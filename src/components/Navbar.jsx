@@ -2,9 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import ThemeToggle from "./ThemeToggle";
 import StorageGauge from "./StorageGauge";
+import useSidebar from "../hooks/useSidebar";
+import useMobileMode from "../hooks/useMobileMode";
 
 const Navbar = () => {
   const { dark } = useTheme();
+  const { setIsSidebarOpen } = useSidebar();
+  const isMobileMode = useMobileMode();
 
   const navItems = [
     { name: "Tasks", path: "/taskmanage" },
@@ -37,11 +41,25 @@ const Navbar = () => {
                 Dev Tasks
               </span>
             </Link>
-            
-            {/* Theme toggle on mobile */}
-            <div className="md:hidden">
-              <ThemeToggle />
-            </div>
+
+            {/* Mobile actions */}
+            {isMobileMode && (
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button
+                  type="button"
+                  onClick={() => setIsSidebarOpen((prev) => !prev)}
+                  className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition-colors duration-300 ${
+                    dark
+                      ? "border-zinc-700 bg-zinc-900 text-white"
+                      : "border-neutral-200 bg-neutral-50 text-black"
+                  }`}
+                  aria-label="Open sidebar menu"
+                >
+                  <span className="text-lg font-black leading-none">☰</span>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Navigation Links */}
@@ -70,7 +88,7 @@ const Navbar = () => {
           </div>
 
           {/* Actions on desktop */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
             <StorageGauge />
           </div>

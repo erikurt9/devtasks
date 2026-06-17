@@ -33,9 +33,11 @@ import DiffChecker from "./pages/DevUtilities/devutilities/DiffChecker";
 
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { CategoryProvider } from "./context/CategoryContext";
+import { SidebarProvider } from "./context/SidebarContext";
 import ShortcutsHUD from "./components/ShortcutsHUD";
 import useKeyboardShortcuts from "./hooks/useKeyboardShortcuts";
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import "./index.css";
 
 function App() {
@@ -45,10 +47,12 @@ function App() {
   return (
     <ThemeProvider>
       <CategoryProvider>
-        <ShortcutsHUD visible={hudVisible} />
-        <Router>
-          <AppInner toggleHUD={toggleHUD} hudVisible={hudVisible} />
-        </Router>
+        <SidebarProvider>
+          <ShortcutsHUD visible={hudVisible} />
+          <Router>
+            <AppInner toggleHUD={toggleHUD} hudVisible={hudVisible} />
+          </Router>
+        </SidebarProvider>
       </CategoryProvider>
     </ThemeProvider>
   );
@@ -70,45 +74,60 @@ function AppInner({ toggleHUD, hudVisible }) {
     >
       <Toaster position="bottom-right" />
       {showNavbar && <Navbar />}
-      <div className={showNavbar ? "flex-1 overflow-y-auto navbar-layout-content flex flex-col" : "w-full"}>
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        
-        {/* Task Management */}
-        <Route path="/taskmanage" element={<TaskManage />} />
-        <Route path="/taskmanage/add-tasks" element={<AddTasks />} />
-        <Route path="/taskmanage/list-tasks" element={<ListTasks />} />
-        <Route path="/taskmanage/delete-history" element={<DeleteHistory />} />
-        <Route path="/taskmanage/data-center" element={<DataCenter />} />
-        
-        {/* Snippet Vault */}
-        <Route path="/snippetvault" element={<SnippetVault />} />
-        <Route path="/snippetvault/add" element={<AddSnippet />} />
-        <Route path="/snippetvault/edit/:id" element={<AddSnippet />} />
-        <Route path="/snippetvault/list" element={<ListSnippets />} />
-        <Route path="/snippetvault/edit/:snippetid" element={<AddSnippet />} />
-        <Route path="/snippetvault/delete-history" element={<DeleteHistorySnippet />} />
-        <Route path="/snippetvault/data-center" element={<DataCenterSnippet />} />
-        
-        {/* Resource Hub */}
-        <Route path="/resourcehub" element={<ResourceHub />} />
-        <Route path="/resourcehub/add" element={<AddResource />} />
-        <Route path="/resourcehub/edit/:id" element={<AddResource />} />
-        <Route path="/resourcehub/list" element={<ListResources />} />
-        <Route path="/resourcehub/delete-history" element={<DeleteHistoryResource />} />
-        <Route path="/resourcehub/data-center" element={<DataCenterResource />} />
+      <div
+        className={
+          showNavbar
+            ? "relative flex-1 min-h-0 overflow-hidden flex flex-col lg:flex-row"
+            : "w-full"
+        }
+      >
+        {showNavbar && <Sidebar />}
+        <div
+          className={
+            showNavbar
+              ? "flex-1 min-h-0 overflow-y-auto navbar-layout-content flex flex-col"
+              : "w-full"
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Dev Utilities */}
-        <Route path="/devutilities" element={<DevUtilities />} />
-        <Route path="/devutilities/regex" element={<RegexTester />} />
-        <Route path="/devutilities/json" element={<JsonFormatter />} />
-        <Route path="/devutilities/base64" element={<Base64Url />} />
-        <Route path="/devutilities/timestamp" element={<TimestampConverter />} />
-        <Route path="/devutilities/uuid" element={<UuidGenerator />} />
-        <Route path="/devutilities/jwt" element={<JwtDecoder />} />
-        <Route path="/devutilities/diff" element={<DiffChecker />} />
-      </Routes>
+            {/* Task Management */}
+            <Route path="/taskmanage" element={<TaskManage />} />
+            <Route path="/taskmanage/add-tasks" element={<AddTasks />} />
+            <Route path="/taskmanage/list-tasks" element={<ListTasks />} />
+            <Route path="/taskmanage/delete-history" element={<DeleteHistory />} />
+            <Route path="/taskmanage/data-center" element={<DataCenter />} />
+
+            {/* Snippet Vault */}
+            <Route path="/snippetvault" element={<SnippetVault />} />
+            <Route path="/snippetvault/add" element={<AddSnippet />} />
+            <Route path="/snippetvault/edit/:id" element={<AddSnippet />} />
+            <Route path="/snippetvault/list" element={<ListSnippets />} />
+            <Route path="/snippetvault/edit/:snippetid" element={<AddSnippet />} />
+            <Route path="/snippetvault/delete-history" element={<DeleteHistorySnippet />} />
+            <Route path="/snippetvault/data-center" element={<DataCenterSnippet />} />
+
+            {/* Resource Hub */}
+            <Route path="/resourcehub" element={<ResourceHub />} />
+            <Route path="/resourcehub/add" element={<AddResource />} />
+            <Route path="/resourcehub/edit/:id" element={<AddResource />} />
+            <Route path="/resourcehub/list" element={<ListResources />} />
+            <Route path="/resourcehub/delete-history" element={<DeleteHistoryResource />} />
+            <Route path="/resourcehub/data-center" element={<DataCenterResource />} />
+
+            {/* Dev Utilities */}
+            <Route path="/devutilities" element={<DevUtilities />} />
+            <Route path="/devutilities/regex" element={<RegexTester />} />
+            <Route path="/devutilities/json" element={<JsonFormatter />} />
+            <Route path="/devutilities/base64" element={<Base64Url />} />
+            <Route path="/devutilities/timestamp" element={<TimestampConverter />} />
+            <Route path="/devutilities/uuid" element={<UuidGenerator />} />
+            <Route path="/devutilities/jwt" element={<JwtDecoder />} />
+            <Route path="/devutilities/diff" element={<DiffChecker />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );
