@@ -71,6 +71,8 @@ const SIDEBAR_SECTIONS = [
       { label: "JWT Decoder", description: "Inspect tokens", path: "/devutilities/jwt" },
       { label: "Diff Checker", description: "Compare text differences", path: "/devutilities/diff" },
       { label: "Color Converter", description: "Convert colors and check contrast", path: "/devutilities/color" },
+      { label: "Code Sandbox", description: "Live HTML/CSS/JS preview", path: "/devutilities/code" },
+      { label: "QR Code", description: "Generate QR codes", path: "/devutilities/qrcode" },
     ],
   },
 ];
