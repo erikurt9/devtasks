@@ -8,6 +8,10 @@
 
 A high-performance, minimalist engineering command center designed for developer workflows. DevTasks provides a premium, clean monochrome workspace featuring live roadmap analytics, a snippet code registry, a project resources manager, offline developer utilities, and a global keyboard shortcuts HUD.
 
+## 🚀 Live Demo
+
+Experience DevTasks live at: **[https://dev-tasks-beta.vercel.app/](https://dev-tasks-beta.vercel.app/)**
+
 ---
 
 ## ✨ Features
@@ -82,6 +86,20 @@ We love open-source contributions! Whether you're a seasoned developer or lookin
 3. **Commit your changes** using clean, descriptive commit messages.
 4. **Push to your fork** and submit a **Pull Request** targeting our `main` branch.
 
+### 🟢 Good First Issue: Add a New Dev Utility to DevTasks (Issue #193)
+
+If you are a first-time contributor, we have a featured open issue to help you get started:
+
+> **[Good First Issue] Add a New Dev Utility to DevTasks**
+> * **Status**: Open 🟢 (Issue #193)
+> * **Difficulty**: Beginner / Intermediate
+> * **Focus**: React Components & Routing
+> * **Labels**: `good first issue` · `help wanted` · `enhancement` · `ui`
+>
+> Help expand the Dev Utilities Sandbox by creating a new offline developer tool (e.g., HTML Encoder, Markdown Previewer) and registering it in the application. Refer to existing utilities such as `JsonFormatter.jsx` for structure and theme styling.
+>
+> See full details and implementation guides in **[GitHub Issue #193](https://github.com/shamilahmdt/devtasks/issues/193)**.
+
 ---
 
 ## 💬 Discussions & Community
@@ -92,18 +110,18 @@ Got a feature idea, an architectural suggestion, or just want to chat about the 
 
 ---
 
-## 🚀 Future Architectural Vision (Next Milestones)
+## 🚀 Architectural Milestones
 
-DevTasks is rapidly evolving to boost developer workflow speed. Here is our current progress and the next architectural milestones on our radar:
+DevTasks is fully operational to boost developer workflow speed. Here is the current completion status of our primary workspace modules:
 
 * 📋 **Task Management Workspace (`/taskmanage`)** — *[COMPLETED]* ✅
   * A full-fledged developer roadmap planner with feature/bug/refactor classification, custom priority weighting, deleted history logs, and import/export backup controls.
-* 📦 **Minimalist Snippet Vault (`/snippetvault`)** — *[IN PROGRESS]* 🏗️
-  * Scaffolded with sub-pages for snippet creation, search filtering, delete log auditing, and JSON backups. The next focus is implementing premium styling, inline clipboard copy feedback, and persistent storage synchronization.
-* 🔗 **Resource Hub (`/resourcehub`)** — *[IN PROGRESS]* 🏗️
-  * Sub-page skeletons created for bookmark lists, additions, history, and exports. Next focus is implementing input forms, category filter groupings, and browser storage persistence.
-* 🛠️ **Dev Utilities Sandbox (`/devutilities`)** — *[IN PROGRESS]* 🏗️
-  * Scaffolding ready for Regex Tester, JSON Formatter, Base64 Converter, and Timestamp Converter. 
+* 📦 **Minimalist Snippet Vault (`/snippetvault`)** — *[COMPLETED]* ✅
+  * A secure local snippet registry with sub-pages for creating, editing, search filtering, auditing deleted history, and JSON data backup/restores.
+* 🔗 **Resource Hub (`/resourcehub`)** — *[COMPLETED]* ✅
+  * A consolidated bookmarks manager for engineering reference links, design specs, APIs, and docs with category groupings and full backup utilities.
+* 🛠️ **Dev Utilities Sandbox (`/devutilities`)** — *[COMPLETED]* ✅
+  * A rich offline sandbox of developer utilities featuring a Regex Tester, JSON Formatter, Base64 & URL Encoder/Decoder, Timestamp Converter, UUID Generator, JWT Decoder, Diff Checker, Hash Generator, Color Converter, Code Sandbox, and QR Code Generator.
 
 ---
 
