@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { FaCode } from "react-icons/fa";
@@ -18,6 +19,33 @@ const DevUtilities = () => {
     },
   };
   const t = dark ? theme.dark : theme.light;
+
+  // Initialize favorites from storage only in the browser.
+  const FAVORITES_STORAGE_KEY = "favorite_utilities";
+  const [favoritePaths, setFavoritePaths] = useState(() => {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    try {
+      const savedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
+
+      if (!savedFavorites) {
+        return [];
+      }
+
+      const parsedFavorites = JSON.parse(savedFavorites);
+
+      if (!Array.isArray(parsedFavorites)) {
+        return [];
+      }
+
+      return parsedFavorites.filter((path) => typeof path === "string");
+    } catch (error) {
+      console.error("Unable to load favorite tools", error);
+      return [];
+    }
+  });
 
   const cards = [
     {
@@ -499,6 +527,34 @@ const DevUtilities = () => {
     },
   ];
 
+  // There are some duplicate cards, so I'm just leaving this here.
+  const uniqueCards = Array.from(
+    new Map(cards.map((card) => [card.path, card])).values()
+  );
+
+  // Splitting both favourite and other cards
+  const favoriteSet = new Set(favoritePaths);
+  const favoriteCards = uniqueCards.filter((card) => favoriteSet.has(card.path));
+  const otherCards = uniqueCards.filter((card) => !favoriteSet.has(card.path));
+  const hasFavorites = favoriteCards.length > 0;
+
+  // Mirror favorites back to localStorage whenever the list changes.
+  useEffect(() => {
+    localStorage.setItem(
+      FAVORITES_STORAGE_KEY,
+      JSON.stringify(favoritePaths)
+    );
+  }, [favoritePaths]);
+
+  // Toggle a card between favorite and non-favorite states.
+  const toggleFavorite = (path) => {
+    setFavoritePaths((currentFavorites) =>
+      currentFavorites.includes(path)
+        ? currentFavorites.filter((item) => item !== path)
+        : [...currentFavorites, path]
+    );
+  };
+
   return (
     <div
       className={`${t.wrapper} min-h-screen w-full font-sans overflow-x-hidden flex flex-col p-4 md:p-8 transition-colors duration-300`}
@@ -511,6 +567,7 @@ const DevUtilities = () => {
 
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col h-full">
         <header className="shrink-0 mb-12 flex flex-col gap-4">
+          {/* Back navigation and page title area. */}
           <Link
             to="/dashboard"
             className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${dark
@@ -559,37 +616,191 @@ const DevUtilities = () => {
           </div>
         </header>
 
-        <div className="grow w-full py-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-            {cards.map((card) => (
-              <Link
-                key={card.title}
-                to={card.path}
-                id={`devutilities-card-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`group relative p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between min-h-[280px] h-full ${t.card}`}
-              >
+        <div className="grow w-full">
+          <section
+            aria-hidden={!hasFavorites}
+            className={`overflow-hidden transition-all duration-500 ease-out ${
+              hasFavorites
+                ? "mb-12 max-h-[3000px] opacity-100 translate-y-0"
+                : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
+            }`}
+          >
+            <div>
+              <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
-                  <div
-                    className={`mb-6 p-3 w-fit rounded-xl transition-colors shadow-sm ${t.icon}`}
-                  >
-                    {card.icon}
-                  </div>
-                  <h2 className="text-xl font-black mb-3 uppercase tracking-tight">
-                    {card.title}
+                  <h2 className="text-2xl font-black uppercase tracking-tight">
+                    Favourite Tools
                   </h2>
-                  <p className="text-sm font-medium text-zinc-500 group-hover:text-zinc-400 transition-colors leading-relaxed">
-                    {card.description}
+                  <p className="mt-1 text-sm font-medium text-zinc-500">
+                    Your saved tools appear here first.
                   </p>
                 </div>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                  Open Tool{" "}
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                <div className="text-xs font-black uppercase tracking-widest text-zinc-500">
+                  {favoriteCards.length} item{favoriteCards.length === 1 ? "" : "s"}
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+                {favoriteCards.map((card) => {
+                  const isFavorite = favoriteSet.has(card.path);
+
+                  return (
+                    // Each card links to the tool, while the star updates local state.
+                    <Link
+                      key={card.path}
+                      to={card.path}
+                      id={`devutilities-card-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      className={`group relative p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between min-h-70 h-full ${t.card}`}
+                    >
+                      <button
+                        type="button"
+                        aria-label={
+                          isFavorite
+                            ? `Remove ${card.title} from favorites`
+                            : `Add ${card.title} to favorites`
+                        }
+                        aria-pressed={isFavorite}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          toggleFavorite(card.path);
+                        }}
+                        className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                          isFavorite
+                            ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
+                            : dark
+                              ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
+                              : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
+                        }`}
+                      >
+                        <svg
+                          className="h-5 w-5"
+                          viewBox="0 0 24 24"
+                          fill={isFavorite ? "currentColor" : "none"}
+                          stroke="currentColor"
+                          strokeWidth={1.9}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          {/* STAR ICON */}
+                          <path d="M12 3.6l2.93 5.94 6.55.95-4.74 4.62 1.12 6.52L12 18.55l-5.86 3.08 1.12-6.52L2.52 10.49l6.55-.95L12 3.6z" />
+                        </svg>
+                      </button>
+                      <div>
+                        <div
+                          className={`mb-6 p-3 w-fit rounded-xl transition-colors shadow-sm ${t.icon}`}
+                        >
+                          {card.icon}
+                        </div>
+                        <h2 className="text-xl font-black mb-3 uppercase tracking-tight">
+                          {card.title}
+                        </h2>
+                        <p className="text-sm font-medium text-zinc-500 group-hover:text-zinc-400 transition-colors leading-relaxed">
+                          {card.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                        Open Tool{" "}
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                          →
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div className="mb-5 flex items-end justify-between gap-4">
+              {hasFavorites && (
+                <>
+                  <div>
+                    <h2 className="text-2xl font-black uppercase tracking-tight">
+                      All Tools
+                    </h2>
+                    <p className="mt-1 text-sm font-medium text-zinc-500">
+                      The full utility list lives below your favorites.
+                    </p>
+                  </div>
+                  <div className="text-xs font-black uppercase tracking-widest text-zinc-500">
+                    {otherCards.length} item{otherCards.length === 1 ? "" : "s"}
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+              {otherCards.map((card) => {
+                const isFavorite = favoriteSet.has(card.path);
+
+                return (
+                  // Each card links to the tool, while the star updates local state.
+                  <Link
+                    key={card.path}
+                    to={card.path}
+                    id={`devutilities-card-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`group relative p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between min-h-70 h-full ${t.card}`}
+                  >
+                    <button
+                      type="button"
+                      aria-label={
+                        isFavorite
+                          ? `Remove ${card.title} from favorites`
+                          : `Add ${card.title} to favorites`
+                      }
+                      aria-pressed={isFavorite}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        toggleFavorite(card.path);
+                      }}
+                      className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                        isFavorite
+                          ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
+                          : dark
+                            ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
+                            : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
+                      }`}
+                    >
+                      <svg
+                        className="h-5 w-5"
+                        viewBox="0 0 24 24"
+                        fill={isFavorite ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        strokeWidth={1.9}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        {/* STAR ICON */}
+                        <path d="M12 3.6l2.93 5.94 6.55.95-4.74 4.62 1.12 6.52L12 18.55l-5.86 3.08 1.12-6.52L2.52 10.49l6.55-.95L12 3.6z" />
+                      </svg>
+                    </button>
+                    <div>
+                      <div
+                        className={`mb-6 p-3 w-fit rounded-xl transition-colors shadow-sm ${t.icon}`}
+                      >
+                        {card.icon}
+                      </div>
+                      <h2 className="text-xl font-black mb-3 uppercase tracking-tight">
+                        {card.title}
+                      </h2>
+                      <p className="text-sm font-medium text-zinc-500 group-hover:text-zinc-400 transition-colors leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                      Open Tool{" "}
+                      <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                        →
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
         </div>
       </div>
     </div>
