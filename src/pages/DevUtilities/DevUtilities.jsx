@@ -336,31 +336,10 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "Text Case Converter",
-      description:
-        "Convert text to uppercase, lowercase, title case, sentence case, and more. Fully offline.",
-      path: "/devutilities/text-case-converter",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm13 0h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3-6h1v1h-1v-1z"
-          />
-        </svg>
-      ),
-    },
-    {
       title: "Mock JSON Generator",
       description:
         "Generate mock JSON data for testing and prototyping. Fully offline.",
-      path: "/devutilities/mock-json-generator",
+      path: "/devutilities/mock-json",
       icon: (
         <svg
           className="w-6 h-6"
@@ -381,7 +360,7 @@ const DevUtilities = () => {
       title: "Markdown Table Generator",
       description:
         "Build markdown tables visually or convert CSV and TSV data instantly.",
-      path: "/devutilities/markdown-table-generator",
+      path: "/devutilities/markdown-table",
       icon: (
         <svg
           className="w-6 h-6"
@@ -403,7 +382,22 @@ const DevUtilities = () => {
       description:
         "Beautify messy SQL with proper keyword casing and indentation, or minify to a single line. Fully offline.",
       path: "/devutilities/sql",
-
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"
+          />
+        </svg>
+      ),
+    },
     {
       title: "HTML Entity Converter",
       description:
@@ -420,7 +414,6 @@ const DevUtilities = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M4 6h16M4 10h16M4 14h10M4 18h6"
             d="M8 9l-3 3 3 3m8-6l3 3-3 3M13 5l-2 14"
           />
         </svg>

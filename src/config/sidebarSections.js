@@ -147,14 +147,24 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/json",
       },
       {
+        label: "JWT Encoder",
+        description: "Create and sign JWT tokens",
+        path: "/devutilities/jwt-encoder",
+      },
+      {
         label: "JSON YAML Converter",
         description: "Convert JSON and YAML",
         path: "/devutilities/json-yaml",
       },
       {
-        label: "Markdown Previewer",
-        description: "Preview markdown syntax",
-        path: "/devutilities/markdown",
+        label: "URL Parser",
+        description: "Parse and build URLs",
+        path: "/devutilities/url-parser",
+      },
+      {
+        label: "Text Case Converter",
+        description: "Convert text into different cases",
+        path: "/devutilities/text-case",
       },
       {
         label: "Base64 / URL",
@@ -182,6 +192,11 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/diff",
       },
       {
+        label: "Code Sandbox",
+        description: "Live HTML/CSS/JS preview",
+        path: "/devutilities/code",
+      },
+      {
         label: "Hash Generator",
         description: "Generate crypto hashes",
         path: "/devutilities/hash",
@@ -192,29 +207,34 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/color",
       },
       {
-        label: "Code Sandbox",
-        description: "Live HTML/CSS/JS preview",
-        path: "/devutilities/code",
-      },
-      {
         label: "QR Code Generator",
         description: "Generate QR codes",
         path: "/devutilities/qrcode",
       },
       {
-        label: "Text Case Converter",
-        description: "Convert text into different cases",
-        path: "/devutilities/text-case-converter",
+        label: "Markdown Previewer",
+        description: "Preview markdown syntax",
+        path: "/devutilities/markdown",
       },
       {
         label: "Mock JSON Generator",
         description: "Generate mock JSON data",
-        path: "/devutilities/mock-json-generator",
+        path: "/devutilities/mock-json",
+      },
+      {
+        label: "Markdown Table Generator",
+        description: "Build markdown tables visually",
+        path: "/devutilities/markdown-table",
       },
       {
         label: "SQL Formatter",
         description: "Format and minify SQL queries",
         path: "/devutilities/sql",
+      },
+      {
+        label: "HTML Entity Converter",
+        description: "Encode/decode HTML entities",
+        path: "/devutilities/html-entity",
       },
     ],
   },
