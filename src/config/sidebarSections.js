@@ -149,7 +149,7 @@ const SIDEBAR_SECTIONS = [
       {
         label: "JWT Encoder",
         description: "Create and sign JWT tokens",
-        path: "/devutilities/jwt-encoder",
+        path: "/devutilities/jwt-encode",
       },
       {
         label: "JSON YAML Converter",
@@ -187,6 +187,11 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/jwt",
       },
       {
+        label: "JWT Encoder",
+        description: "Generate Signature",
+        path: "/devutilities/jwt-encode",
+      },
+      {
         label: "Diff Checker",
         description: "Compare text differences",
         path: "/devutilities/diff",
@@ -219,7 +224,7 @@ const SIDEBAR_SECTIONS = [
       {
         label: "Mock JSON Generator",
         description: "Generate mock JSON data",
-        path: "/devutilities/mock-json",
+        path: "/devutilities/mock-json-generator",
       },
       {
         label: "JSON Schema Validator",
@@ -229,12 +234,27 @@ const SIDEBAR_SECTIONS = [
       {
         label: "Markdown Table Generator",
         description: "Build markdown tables visually",
-        path: "/devutilities/markdown-table",
+        path: "/devutilities/markdown-table-genertaor",
       },
       {
         label: "SQL Formatter",
         description: "Format and minify SQL queries",
         path: "/devutilities/sql",
+      },
+      {
+        label: "HTML Entity Converter",
+        description: "Encode/decode HTML entities",
+        path: "/devutilities/html-entity",
+      },
+      {
+        label: "Flexbox & Grid Generator",
+        description: "Generate CSS flexbox and grid completely offline",
+        path: "/devutilities/flexbox-grid-generator",
+      },
+      {
+        label: "SQL Formatter",
+        description: "Format sql queries comletely offline",
+        path: "/devutilities/sql-formatter",
       },
       {
         label: "HTML Entity Converter",
