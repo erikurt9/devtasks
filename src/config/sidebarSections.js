@@ -186,11 +186,7 @@ const SIDEBAR_SECTIONS = [
         description: "Inspect tokens",
         path: "/devutilities/jwt",
       },
-      {
-        label: "JWT Encoder",
-        description: "Generate Signature",
-        path: "/devutilities/jwt-encode",
-      },
+     
       {
         label: "Diff Checker",
         description: "Compare text differences",
@@ -256,11 +252,7 @@ const SIDEBAR_SECTIONS = [
         description: "Format sql queries comletely offline",
         path: "/devutilities/sql-formatter",
       },
-      {
-        label: "HTML Entity Converter",
-        description: "Encode/decode HTML entities",
-        path: "/devutilities/html-entity",
-      },
+     
     ],
   },
 ];

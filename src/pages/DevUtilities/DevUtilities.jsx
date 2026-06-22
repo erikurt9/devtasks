@@ -21,6 +21,13 @@ const DevUtilities = () => {
 
   const cards = [
     {
+  title: "User Agent Parser",
+  description:
+    "Parse browser user-agent strings and inspect client environment information.",
+  path: "/devutilities/user-agent",
+  icon: <FaCode />,
+},
+    {
       title: "Regex Tester",
       description:
         "Test regular expressions with flags, highlights, matching text, and capturing groups.",
@@ -250,132 +257,7 @@ const DevUtilities = () => {
         </svg>
       ),
     },
-    {
-      title: "UUID Generator",
-      description:
-        "Generate RFC4122-compliant v4 UUIDs offline with formatting options.",
-      path: "/devutilities/uuid",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Diff Checker",
-      description:
-        "Compare two text blocks and highlight added, removed, and unchanged lines in split or inline view.",
-      path: "/devutilities/diff",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Code Sandbox",
-      description:
-        "Instantly test raw HTML/CSS/JS with a live preview. No local environment required.",
-      path: "/devutilities/code",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="m16 18 6-6-6-6M8 6l-6 6 6 6"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Hash Generator",
-      description:
-        "Generate MD5, SHA-1, SHA-256, and SHA-512 cryptographic hashes directly in the browser.",
-      path: "/devutilities/hash",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Color Converter & Contrast Checker",
-      description:
-        "Convert HEX, RGB, HSL, and CMYK colors, generate palettes, and verify WCAG contrast offline.",
-      path: "/devutilities/color",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c1.5 2 2 4 2 6s-.5 4-2 6c-1.5-2-2-4-2-6s.5-4 2-6zm-6.36 4.64c2.08.83 3.8 2.55 4.64 4.64-2.09-.83-3.81-2.55-4.64-4.64zm12.72 0c-.83 2.09-2.55 3.81-4.64 4.64.83-2.09 2.55-3.81 4.64-4.64z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "QR Code Generator",
-      description:
-        "Create customizable QR codes from text or URLs with color and size options. Fully offline.",
-      path: "/devutilities/qrcode",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm13 0h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3-6h1v1h-1v-1z"
-          />
-        </svg>
-      ),
-    },
+   
     {
       title: "Markdown Previewer",
       description:

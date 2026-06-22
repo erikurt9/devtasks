@@ -21,6 +21,8 @@ import DataCenterSnippet from "./pages/SnippetVault/snippetvault/DataCenter";
 import HtmlEntityConverter from "./pages/DevUtilities/devutilities/HtmlEntityConverter";
 
 import TextCaseConverter from "./pages/DevUtilities/devutilities/TextCaseConverter";
+//extra added 
+import UserAgentParser from "./pages/DevUtilities/devutilities/UserAgentParser";
 
 // Resource Hub Imports
 import ResourceHub from "./pages/ResourceHub/ResourceHub";
@@ -202,6 +204,7 @@ function AppInner({ toggleHUD, hudVisible }) {
           }
         >
           <Routes>
+            <Route path="/devutilities/user-agent" element={<UserAgentParser />}/>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
 
