@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
+import { FaCode } from "react-icons/fa";
 
 const DevUtilities = () => {
   const { dark } = useTheme();
@@ -486,56 +487,8 @@ const DevUtilities = () => {
       description:
         "Parse browser user-agent strings and inspect client environment information.",
       path: "/devutilities/user-agent",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
+      icon: <FaCode />,
     },
-    {
-      title: "CRON Expression Generator & Descriptor",
-      description: "Generate and inspect CRON expressions. Fully offline.",
-      path: "/devutilities/cron",
-      icon: (
-
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm13 0h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3 3h1v1h-1v-1zm-3 0h1v1h-1v-1zm3-6h1v1h-1v-1z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "CSS Gradient Generator",
-      description:
-        "Create beautiful CSS gradients with live preview and copy-ready code.",
-      path: "/devutilities/css-gradient",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-    },
-
-    {
-  title: "String Inspector",
-  description:
-    "Analyze character, word, sentence, and paragraph counts, byte size, reading/speaking time, and word frequency density.",
-  path: "/devutilities/string-inspector",
-  icon: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 4h6m-6 16h6M5 8h2m10 0h2M5 16h2m10 0h2M7 4v16M17 4v16M7 12h10" />
-    </svg>
-  ),
-},
   ];
 
   // There are some duplicate cards, so I'm just leaving this here.

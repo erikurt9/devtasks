@@ -254,6 +254,10 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/user-agent",
       },
       {
+        label: "Chmod Calculator",
+        description:
+          "Calculate Unix file permissions in decimal and octal notation.",
+        path: "/devutilities/chmod",
         label: "CRON Expression Generator & Descriptor",
         description: "Generate and inspect CRON expressions. Fully offline.",
         path: "/devutilities/cron",
