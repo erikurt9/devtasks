@@ -100,8 +100,7 @@ function App() {
 function AppInner({ toggleHUD, hudVisible }) {
   useKeyboardShortcuts(toggleHUD, hudVisible);
   const location = useLocation();
-  const currentPathRef = useRef(location.pathname);
-  currentPathRef.current = location.pathname;
+
 
   const showNavbar = location.pathname !== "/";
   const { dark } = useTheme();

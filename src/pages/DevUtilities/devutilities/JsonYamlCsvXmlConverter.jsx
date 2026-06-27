@@ -429,14 +429,14 @@ const safeStringify = (val) => {
 const flattenObject = (obj, prefix = "") => {
     const result = {};
 
-    const safeArray = (arr) =>
-    arr.map(v =>
+    const safeValue = (v) =>
         v === null || v === undefined
             ? ""
             : typeof v === "object"
-                ? JSON.stringify(v)
-                : String(v)
-    ).join("|");
+                ? safeStringify(v)
+                : String(v);
+
+    const safeArray = (arr) => arr.map(safeValue).join("|");
 
     const walk = (current, currentKey) => {
         if (current === null || current === undefined) {
