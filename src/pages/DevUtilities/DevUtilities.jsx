@@ -72,6 +72,26 @@ const DevUtilities = () => {
       ),
     },
     {
+      title: "CSS Unit & Fluid Typography",
+      description: "Convert CSS units instantly and generate fluid typography clamp() functions.",
+      path: "/devutilities/css-unit-converter",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      ),
+    },
+    {
       title: "Regex Tester",
       description:
         "Test regular expressions with flags, highlights, matching text, and capturing groups.",

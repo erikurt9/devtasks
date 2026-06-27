@@ -35,6 +35,7 @@ import DataCenterResource from "./pages/ResourceHub/resourcehub/DataCenter";
 // Dev Utilities Imports
 import DevUtilities from "./pages/DevUtilities/DevUtilities";
 import RegexTester from "./pages/DevUtilities/devutilities/RegexTester";
+import CssUnitConverter from "./pages/DevUtilities/devutilities/CssUnitConverter";
 import JsonFormatter from "./pages/DevUtilities/devutilities/JsonFormatter";
 import JsonYamlCsvConverter from "./pages/DevUtilities/devutilities/JsonYamlCsvConverter";
 import MarkdownPreviewer from "./pages/DevUtilities/devutilities/MarkdownPreviewer";
@@ -280,6 +281,7 @@ function AppInner({ toggleHUD, hudVisible }) {
               {/* Dev Utilities */}
               <Route path="/devutilities" element={<DevUtilities />} />
               <Route path="/devutilities/regex" element={<RegexTester />} />
+              <Route path="/devutilities/css-unit-converter" element={<CssUnitConverter />} />
               <Route path="/devutilities/json" element={<JsonFormatter />} />
               <Route
                 path="/devutilities/json-csv-yaml"
