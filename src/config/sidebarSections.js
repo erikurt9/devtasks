@@ -174,7 +174,7 @@ const SIDEBAR_SECTIONS = [
       {
         label: "Markdown Table Generator",
         description: "Build markdown tables visually",
-        path: "/devutilities/markdown-table-genertaor",
+        path: "/devutilities/markdown-table-generator",
       },
       {
         label: "Regex Tester",
@@ -270,6 +270,12 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/jwt",
       },
       {
+        label: "CSS Animation Generator",
+        description:
+          "Create custom keyframe animations, customize duration and timing functions, and copy generated CSS.",
+        path: "/devutilities/css-animation",
+      },
+      {
         label: "CSS Gradient Generator",
         description: "Create beautiful CSS gradients with live preview",
         path: "/devutilities/css-gradient",
@@ -346,6 +352,10 @@ const SIDEBAR_SECTIONS = [
         label: "Word Counter",
         description: "Character & word count tool",
         path: "/devutilities/word-counter",
+        label: "SQL Schema Converter",
+        description:
+          "Convert SQL CREATE TABLE schemas into JSON Schema and Markdown tables.",
+        path: "/devutilities/sql-converter",
       },
     ],
   },

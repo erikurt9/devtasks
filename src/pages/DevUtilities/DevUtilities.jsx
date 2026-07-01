@@ -10,12 +10,14 @@ const DevUtilities = () => {
   const theme = {
     light: {
       wrapper: "bg-[#F8F9FA] text-zinc-900",
-      card: "bg-white border-zinc-200/85 hover:border-zinc-400 hover:shadow-md hover:-translate-y-1",
+      card:
+        "bg-white border-zinc-200/85 hover:border-zinc-400 hover:shadow-md hover:-translate-y-1",
       icon: "bg-black text-white border border-black/10",
     },
     dark: {
       wrapper: "bg-[#090A0F] text-zinc-100",
-      card: "bg-zinc-900/50 border-zinc-800/85 hover:border-zinc-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:-translate-y-1",
+      card:
+        "bg-zinc-900/50 border-zinc-800/85 hover:border-zinc-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:-translate-y-1",
       icon: "bg-white text-black border border-white/10",
     },
   };
@@ -537,7 +539,7 @@ const DevUtilities = () => {
       title: "Markdown Table Generator",
       description:
         "Build markdown tables visually or convert CSV and TSV data instantly.",
-      path: "/devutilities/markdown-table-genertaor",
+      path: "/devutilities/markdown-table-generator",
       icon: (
         <svg
           className="w-6 h-6"
@@ -571,6 +573,27 @@ const DevUtilities = () => {
             strokeLinejoin="round"
             strokeWidth={2}
             d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "SQL Schema Converter",
+      description:
+        "Convert SQL CREATE TABLE schemas into JSON Schema and Markdown tables.",
+      path: "/devutilities/sql-converter",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 4C7.582 4 4 5.79 4 8s3.582 4 8 4 8-1.79 8-4-3.582-4-8-4zm8 4v4c0 2.21-3.582 4-8 4s-8-1.79-8-4V8m16 4v4c0 2.21-3.582 4-8 4s-8-1.79-8-4v-4"
           />
         </svg>
       ),
@@ -747,6 +770,33 @@ const DevUtilities = () => {
             strokeLinejoin="round"
             strokeWidth={2}
             d="M4 6h16M4 6v12a1 1 0 001 1h14a1 1 0 001-1V6M8 10h.01M8 14h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "CSS Animation Generator",
+      description:
+        "Create custom keyframe animations, customize duration and timing functions, and copy generated CSS.",
+      path: "/devutilities/css-animation",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
       ),
@@ -1142,7 +1192,9 @@ const DevUtilities = () => {
                       <Link
                         key={card.path}
                         to={card.path}
-                        id={`devutilities-card-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
+                        id={`devutilities-card-${card.title
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                         className={`group relative p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between min-h-70 h-full ${t.card}`}
                       >
                         <button
@@ -1162,8 +1214,8 @@ const DevUtilities = () => {
                             isFavorite
                               ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
                               : dark
-                                ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
-                                : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
+                              ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
+                              : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
                           }`}
                         >
                           <svg
@@ -1233,7 +1285,9 @@ const DevUtilities = () => {
                       <Link
                         key={card.path}
                         to={card.path}
-                        id={`devutilities-card-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
+                        id={`devutilities-card-${card.title
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                         className={`group relative p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between min-h-70 h-full ${t.card}`}
                       >
                         <button
@@ -1253,8 +1307,8 @@ const DevUtilities = () => {
                             isFavorite
                               ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
                               : dark
-                                ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
-                                : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
+                              ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
+                              : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
                           }`}
                         >
                           <svg

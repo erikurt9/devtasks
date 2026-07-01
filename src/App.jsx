@@ -1,89 +1,91 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  Navigate,
+  Route,
   BrowserRouter as Router,
   Routes,
-  Route,
   useLocation,
-  Navigate,
 } from "react-router-dom";
 import { Toaster } from "sonner";
-import Home from "./pages/Home";
-import KeycodeInspector from "./pages/DevUtilities/devutilities/KeycodeInspector";
 import Dashboard from "./pages/Dashboard";
-import TaskManage from "./pages/TaskManagement/TaskManage";
-import AddTasks from "./pages/TaskManagement/taskmanage/AddTasks";
-import ListTasks from "./pages/TaskManagement/taskmanage/ListTasks";
-import DeleteHistory from "./pages/TaskManagement/taskmanage/DeleteHistory";
-import DataCenter from "./pages/TaskManagement/taskmanage/DataCenter";
+import Home from "./pages/Home";
 import SnippetVault from "./pages/SnippetVault/SnippetVault";
 import AddSnippet from "./pages/SnippetVault/snippetvault/AddSnippet";
-import ListSnippets from "./pages/SnippetVault/snippetvault/ListSnippets";
-import DeleteHistorySnippet from "./pages/SnippetVault/snippetvault/DeleteHistory";
 import DataCenterSnippet from "./pages/SnippetVault/snippetvault/DataCenter";
-import HtmlEntityConverter from "./pages/DevUtilities/devutilities/HtmlEntityConverter";
-import HtmlMultiConverter from "./pages/DevUtilities/devutilities/HtmlMultiConverter";
-
-import TextCaseConverter from "./pages/DevUtilities/devutilities/TextCaseConverter";
-//extra added
-import UserAgentParser from "./pages/DevUtilities/devutilities/UserAgentParser";
+import DeleteHistorySnippet from "./pages/SnippetVault/snippetvault/DeleteHistory";
+import ListSnippets from "./pages/SnippetVault/snippetvault/ListSnippets";
+import TaskManage from "./pages/TaskManagement/TaskManage";
+import AddTasks from "./pages/TaskManagement/taskmanage/AddTasks";
+import DataCenter from "./pages/TaskManagement/taskmanage/DataCenter";
+import DeleteHistory from "./pages/TaskManagement/taskmanage/DeleteHistory";
+import ListTasks from "./pages/TaskManagement/taskmanage/ListTasks";
 
 // Resource Hub Imports
 import ResourceHub from "./pages/ResourceHub/ResourceHub";
 import AddResource from "./pages/ResourceHub/resourcehub/AddResource";
-import ListResources from "./pages/ResourceHub/resourcehub/ListResources";
-import DeleteHistoryResource from "./pages/ResourceHub/resourcehub/DeleteHistory";
 import DataCenterResource from "./pages/ResourceHub/resourcehub/DataCenter";
+import DeleteHistoryResource from "./pages/ResourceHub/resourcehub/DeleteHistory";
+import ListResources from "./pages/ResourceHub/resourcehub/ListResources";
 
 // Dev Utilities Imports
-import DevUtilities from "./pages/DevUtilities/DevUtilities";
-import RegexTester from "./pages/DevUtilities/devutilities/RegexTester";
-import CssUnitConverter from "./pages/DevUtilities/devutilities/CssUnitConverter";
-import JsonFormatter from "./pages/DevUtilities/devutilities/JsonFormatter";
-import JsonYamlCsvXmlConverter from "./pages/DevUtilities/devutilities/JsonYamlCsvXmlConverter";
-import MarkdownPreviewer from "./pages/DevUtilities/devutilities/MarkdownPreviewer";
-import Base64Url from "./pages/DevUtilities/devutilities/Base64Url";
 import Base64Image from "./pages/DevUtilities/devutilities/Base64Image";
-import TimestampConverter from "./pages/DevUtilities/devutilities/TimestampConverter";
-import UuidGenerator from "./pages/DevUtilities/devutilities/UuidGenerator";
-import JwtDecoder from "./pages/DevUtilities/devutilities/JwtDecoder";
-import DiffChecker from "./pages/DevUtilities/devutilities/DiffChecker";
-import CodeSandbox from "./pages/DevUtilities/devutilities/CodeSandbox";
-import HashGenerator from "./pages/DevUtilities/devutilities/HashGenerator";
-import ColorConverter from "./pages/DevUtilities/devutilities/ColorConverter";
-import QrCodeGenerator from "./pages/DevUtilities/devutilities/QrCodeGenerator";
-import UrlParserBuilder from "./pages/DevUtilities/devutilities/UrlParserBuilder";
-import SubnetCalculator from "./pages/DevUtilities/devutilities/SubnetCalculator";
-import SqlFormatter from "./pages/DevUtilities/devutilities/SqlFormatter";
-import JwtEncoder from "./pages/DevUtilities/devutilities/JwtEncoder";
-import CssGradientGenerator from "./pages/DevUtilities/devutilities/CssGradientGenerator";
-import CssGlassmorphismPlayground from "./pages/DevUtilities/devutilities/CssGlassmorphismPlayground";
+import Base64Url from "./pages/DevUtilities/devutilities/Base64Url";
 import BcryptGenerator from "./pages/DevUtilities/devutilities/BcryptGenerator";
-import PasswordGenerator from "./pages/DevUtilities/devutilities/PasswordGenerator";
-
-import { ThemeProvider, useTheme } from "./context/ThemeContext";
-import { CategoryProvider } from "./context/CategoryContext";
-import { SidebarProvider } from "./context/SidebarContext";
-import ShortcutsHUD from "./components/ShortcutsHUD";
-import useKeyboardShortcuts from "./hooks/useKeyboardShortcuts";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
-import "./index.css";
-import SplashScreen from "./components/SplashScreen";
-import MockJsonGenerator from "./pages/DevUtilities/devutilities/MockJsonDataGenerator";
-import MarkdownTableGenerator from "./pages/DevUtilities/devutilities/MarkdownTableGenerator";
-import JsonSchemaValidator from "./pages/DevUtilities/devutilities/JsonSchemaValidator";
-import FlexboxGridGenerator from "./pages/DevUtilities/devutilities/FlexboxGridGenerator";
 import ChmodCalculator from "./pages/DevUtilities/devutilities/ChmodCalculator";
+import CodeSandbox from "./pages/DevUtilities/devutilities/CodeSandbox";
+import ColorConverter from "./pages/DevUtilities/devutilities/ColorConverter";
 import CronExpression from "./pages/DevUtilities/devutilities/CronExpression";
-import StringInspector from "./pages/DevUtilities/devutilities/StringInspector";
-import NumberBaseConverter from "./pages/DevUtilities/devutilities/NumberBaseConverter";
+import CssAnimationGenerator from "./pages/DevUtilities/devutilities/CssAnimationGenerator";
+import CssGlassmorphismPlayground from "./pages/DevUtilities/devutilities/CssGlassmorphismPlayground";
+import CssGradientGenerator from "./pages/DevUtilities/devutilities/CssGradientGenerator";
+import CssUnitConverter from "./pages/DevUtilities/devutilities/CssUnitConverter";
+import DevUtilities from "./pages/DevUtilities/DevUtilities";
+import DiffChecker from "./pages/DevUtilities/devutilities/DiffChecker";
+import FlexboxGridGenerator from "./pages/DevUtilities/devutilities/FlexboxGridGenerator";
+import HashGenerator from "./pages/DevUtilities/devutilities/HashGenerator";
+import HtmlEntityConverter from "./pages/DevUtilities/devutilities/HtmlEntityConverter";
+import HtmlMultiConverter from "./pages/DevUtilities/devutilities/HtmlMultiConverter";
+import JsonFormatter from "./pages/DevUtilities/devutilities/JsonFormatter";
+import JsonPathEvaluator from "./pages/DevUtilities/devutilities/JsonPathEvaluator";
+import JsonSchemaValidator from "./pages/DevUtilities/devutilities/JsonSchemaValidator";
+import JsonYamlCsvXmlConverter from "./pages/DevUtilities/devutilities/JsonYamlCsvXmlConverter";
+import JwtDecoder from "./pages/DevUtilities/devutilities/JwtDecoder";
+import JwtEncoder from "./pages/DevUtilities/devutilities/JwtEncoder";
+import KeycodeInspector from "./pages/DevUtilities/devutilities/KeycodeInspector";
 import LoremIpsumGenerator from "./pages/DevUtilities/devutilities/LoremIpsumGenerator";
+import MarkdownPreviewer from "./pages/DevUtilities/devutilities/MarkdownPreviewer";
+import MarkdownTableGenerator from "./pages/DevUtilities/devutilities/MarkdownTableGenerator";
+import MockJsonGenerator from "./pages/DevUtilities/devutilities/MockJsonDataGenerator";
+import NumberBaseConverter from "./pages/DevUtilities/devutilities/NumberBaseConverter";
+import PasswordGenerator from "./pages/DevUtilities/devutilities/PasswordGenerator";
+import QrCodeGenerator from "./pages/DevUtilities/devutilities/QrCodeGenerator";
+import RegexTester from "./pages/DevUtilities/devutilities/RegexTester";
+import SqlFormatter from "./pages/DevUtilities/devutilities/SqlFormatter";
+import SqlSchemaConverter from "./pages/DevUtilities/devutilities/SqlSchemaConverter";
+import StringInspector from "./pages/DevUtilities/devutilities/StringInspector";
+import SubnetCalculator from "./pages/DevUtilities/devutilities/SubnetCalculator";
 import SvgOptimizer from "./pages/DevUtilities/devutilities/SvgOptimizer";
+import TextCaseConverter from "./pages/DevUtilities/devutilities/TextCaseConverter";
+import TimestampConverter from "./pages/DevUtilities/devutilities/TimestampConverter";
+import TokenGenerator from "./pages/DevUtilities/devutilities/TokenGenerator";
+import UrlParserBuilder from "./pages/DevUtilities/devutilities/UrlParserBuilder";
+import UserAgentParser from "./pages/DevUtilities/devutilities/UserAgentParser";
+import UuidGenerator from "./pages/DevUtilities/devutilities/UuidGenerator";
+
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import ShortcutsHUD from "./components/ShortcutsHUD";
+import Sidebar from "./components/Sidebar";
+import SplashScreen from "./components/SplashScreen";
 import SIDEBAR_SECTIONS from "./config/sidebarSections";
 import JsonPathEvaluator from "./pages/DevUtilities/devutilities/JsonPathEvaluator";
 import TokenGenerator from "./pages/DevUtilities/devutilities/TokenGenerator";
 import WordCounter from "./pages/DevUtilities/devutilities/WordCounter";
+import { CategoryProvider } from "./context/CategoryContext";
+import { SidebarProvider } from "./context/SidebarContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import useKeyboardShortcuts from "./hooks/useKeyboardShortcuts";
+import "./index.css";
 
 function App() {
   const [hudVisible, setHudVisible] = useState(false);
@@ -316,11 +318,6 @@ function AppInner({ toggleHUD, hudVisible }) {
         >
           <div className="flex-1">
             <Routes>
-              <Route
-                path="/devutilities/user-agent"
-                element={<UserAgentParser />}
-              />
-
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
 
@@ -367,6 +364,10 @@ function AppInner({ toggleHUD, hudVisible }) {
               <Route
                 path="/devutilities/keycode-inspector"
                 element={<KeycodeInspector />}
+              />
+              <Route
+                path="/devutilities/css-animation"
+                element={<CssAnimationGenerator />}
               />
               <Route path="/devutilities/regex" element={<RegexTester />} />
               <Route
@@ -438,12 +439,16 @@ function AppInner({ toggleHUD, hudVisible }) {
                 element={<FlexboxGridGenerator />}
               />
               <Route
-                path="/devutilities/markdown-table-genertaor"
+                path="/devutilities/markdown-table-generator"
                 element={<MarkdownTableGenerator />}
               />
               <Route
                 path="/devutilities/url-parser"
                 element={<UrlParserBuilder />}
+              />
+              <Route
+                path="/devutilities/user-agent"
+                element={<UserAgentParser />}
               />
               <Route
                 path="/devutilities/bcrypt"
@@ -476,7 +481,6 @@ function AppInner({ toggleHUD, hudVisible }) {
                 path="/devutilities/glassmorphism"
                 element={<CssGlassmorphismPlayground />}
               />
-              <Route path="*" element={<Navigate to="/" replace />} />
               <Route
                 path="/devutilities/lorem-ipsum"
                 element={<LoremIpsumGenerator />}
@@ -504,6 +508,10 @@ function AppInner({ toggleHUD, hudVisible }) {
               <Route
                 path="/devutilities/word-counter"
                 element={<WordCounter />}
+              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route
+                path="/devutilities/sql-converter"
+                element={<SqlSchemaConverter />}
               />
             </Routes>
           </div>
