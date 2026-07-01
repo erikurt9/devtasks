@@ -349,6 +349,9 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/design-tokens",
       },
       {
+        label: "Word Counter",
+        description: "Character & word count tool",
+        path: "/devutilities/word-counter",
         label: "SQL Schema Converter",
         description:
           "Convert SQL CREATE TABLE schemas into JSON Schema and Markdown tables.",

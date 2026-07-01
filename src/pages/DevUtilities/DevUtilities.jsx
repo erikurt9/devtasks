@@ -925,6 +925,26 @@ const DevUtilities = () => {
         </svg>
       ),
     },
+    {
+      title: "Word Counter",
+      description: "Count characters and words in your text instantly.",
+      path: "/devutilities/word-counter",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 13h2l1 9h12l1-9h2M9 6h6M9 10h6M5 18h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+          />
+        </svg>
+      ),
+    },
   ];
 
   const devUtilsSection = SIDEBAR_SECTIONS.find(

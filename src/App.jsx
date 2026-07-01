@@ -78,6 +78,9 @@ import ShortcutsHUD from "./components/ShortcutsHUD";
 import Sidebar from "./components/Sidebar";
 import SplashScreen from "./components/SplashScreen";
 import SIDEBAR_SECTIONS from "./config/sidebarSections";
+import JsonPathEvaluator from "./pages/DevUtilities/devutilities/JsonPathEvaluator";
+import TokenGenerator from "./pages/DevUtilities/devutilities/TokenGenerator";
+import WordCounter from "./pages/DevUtilities/devutilities/WordCounter";
 import { CategoryProvider } from "./context/CategoryContext";
 import { SidebarProvider } from "./context/SidebarContext";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -502,6 +505,9 @@ function AppInner({ toggleHUD, hudVisible }) {
                 path="/devutilities/design-tokens"
                 element={<TokenGenerator />}
               />
+              <Route
+                path="/devutilities/word-counter"
+                element={<WordCounter />}
               <Route path="*" element={<Navigate to="/" replace />} />
               <Route
                 path="/devutilities/sql-converter"
