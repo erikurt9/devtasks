@@ -453,9 +453,9 @@ export default function KeycodeInspector() {
                 <div />
 
                 {/* Row 5: Arrow Left, Down, Right */}
-                {renderKey("◀", "ArrowLeft", "", "w-full")}
+                {renderKey("◄", "ArrowLeft", "", "w-full")}
                 {renderKey("▼", "ArrowDown", "", "w-full")}
-                {renderKey("▶", "ArrowRight", "", "w-full")}
+                {renderKey("►", "ArrowRight", "", "w-full")}
               </div>
 
               {/* Vertical Divider */}
