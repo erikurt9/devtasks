@@ -12,9 +12,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-<url>
+  <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/keycode-inspector</loc>
-</url>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Task Management -->
   <url>
     <loc>https://dev-tasks-beta.vercel.app/taskmanage</loc>
@@ -163,6 +166,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/base64-image</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/timestamp</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -295,6 +304,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/css-animation</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/css-gradient</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -345,6 +360,18 @@
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/design-tokens</loc>
     <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/word-counter</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/sql-converter</loc>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
