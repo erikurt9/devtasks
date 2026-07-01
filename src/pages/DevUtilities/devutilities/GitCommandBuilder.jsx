@@ -194,9 +194,10 @@ const SCENARIOS = [
       { id: "remote", type: "text", label: "Remote Name", default: "origin" },
       { id: "url", type: "text", label: "Remote URL", default: "https://github.com/user/repo.git" }
     ],
-    generate: (inputs) => [
-      { cmd: `git remote add ${inputs.remote} ${inputs.url}`, desc: "Add a new remote repository connection." }
-    ]
+generate: (inputs) => {
+      const quote = (v) => `'${String(v ?? "").replaceAll("'", "'\\''")}'`;
+      return [{ cmd: `git remote add ${quote(inputs.remote)} ${quote(inputs.url)}`, desc: "Add a new remote repository connection." }];
+    }
   },
   {
     id: "push_upstream",
