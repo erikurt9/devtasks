@@ -73,7 +73,8 @@ const DevUtilities = () => {
     },
     {
       title: "CSS Unit & Fluid Typography",
-      description: "Convert CSS units instantly and generate fluid typography clamp() functions.",
+      description:
+        "Convert CSS units instantly and generate fluid typography clamp() functions.",
       path: "/devutilities/css-unit-converter",
       icon: (
         <svg
@@ -176,26 +177,26 @@ const DevUtilities = () => {
       ),
     },
     {
-  title: "Keyboard Keycode Inspector",
-  description:
-    "Inspect keyboard events, key codes, modifiers and physical keyboard layout in real time.",
-  path: "/devutilities/keycode-inspector",
-  icon: (
-    <svg
-      className="w-6 h-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 8h16M4 12h16M4 16h16"
-      />
-    </svg>
-  ),
-},
+      title: "Keyboard Keycode Inspector",
+      description:
+        "Inspect keyboard events, key codes, modifiers and physical keyboard layout in real time.",
+      path: "/devutilities/keycode-inspector",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 8h16M4 12h16M4 16h16"
+          />
+        </svg>
+      ),
+    },
     {
       title: "UUID Generator",
       description:
@@ -835,8 +836,7 @@ const DevUtilities = () => {
     },
     {
       title: "JSON Path & JSON Query Playground",
-      description:
-        "JSON Path and JSON Query Playground. Fully offline.",
+      description: "JSON Path and JSON Query Playground. Fully offline.",
       path: "/devutilities/jsonpath-playground",
       icon: (
         <svg
@@ -871,6 +871,26 @@ const DevUtilities = () => {
             strokeLinejoin="round"
             strokeWidth={2}
             d="M7 7a3 3 0 116 0c0 .9-.4 1.7-1 2.3l-4.7 4.7a2 2 0 102.8 2.8l.7-.7h1.7a3.5 3.5 0 100-7h-.5M14 7h.01"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Word Counter",
+      description: "Count characters and words in your text instantly.",
+      path: "/devutilities/word-counter",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 13h2l1 9h12l1-9h2M9 6h6M9 10h6M5 18h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
           />
         </svg>
       ),
@@ -949,10 +969,11 @@ const DevUtilities = () => {
           {/* Back navigation and page title area. */}
           <Link
             to="/dashboard"
-            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${dark
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
                 ? "text-neutral-400 hover:text-white"
                 : "text-neutral-500 hover:text-black"
-              }`}
+            }`}
           >
             <span>← Back to Dashboard</span>
           </Link>
@@ -988,10 +1009,11 @@ const DevUtilities = () => {
                   placeholder="Search utilities..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`w-full rounded-2xl border py-2.5 pl-11 pr-10 text-xs font-semibold outline-none transition-all duration-300 ${dark
+                  className={`w-full rounded-2xl border py-2.5 pl-11 pr-10 text-xs font-semibold outline-none transition-all duration-300 ${
+                    dark
                       ? "bg-zinc-950/60 border-zinc-800 text-white placeholder-zinc-600 focus:border-white"
                       : "bg-white border-neutral-250 text-black placeholder-neutral-400 focus:border-black"
-                    }`}
+                  }`}
                 />
                 {searchQuery && (
                   <button
@@ -1042,7 +1064,12 @@ const DevUtilities = () => {
                     if (t.includes("TIMESTAMP")) return "TIMESTAMP";
                     if (t.includes("UUID")) return "UUID";
                     if (t.includes("JWT ENCODE")) return "JWT ENCODE";
-                    if (t.includes("JWT DECODE") || t === "JWT DECODER" || (t.includes("JWT") && !t.includes("ENCODE"))) return "JWT DECODE";
+                    if (
+                      t.includes("JWT DECODE") ||
+                      t === "JWT DECODER" ||
+                      (t.includes("JWT") && !t.includes("ENCODE"))
+                    )
+                      return "JWT DECODE";
                     if (t.includes("DIFF")) return "DIFF";
                     if (t.includes("HASH")) return "HASH";
                     if (t.includes("COLOR")) return "COLOR";
@@ -1085,10 +1112,11 @@ const DevUtilities = () => {
             <>
               <section
                 aria-hidden={!hasFavorites}
-                className={`overflow-hidden transition-all duration-500 ease-out ${hasFavorites
+                className={`overflow-hidden transition-all duration-500 ease-out ${
+                  hasFavorites
                     ? "mb-12 max-h-[3000px] opacity-100 translate-y-0"
                     : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
-                  }`}
+                }`}
               >
                 <div className="mb-5 flex items-end justify-between gap-4">
                   <div>
@@ -1130,12 +1158,13 @@ const DevUtilities = () => {
                             event.stopPropagation();
                             toggleFavorite(card.path);
                           }}
-                          className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${isFavorite
+                          className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                            isFavorite
                               ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
                               : dark
                                 ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
                                 : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
-                            }`}
+                          }`}
                         >
                           <svg
                             className="h-5 w-5"
@@ -1220,12 +1249,13 @@ const DevUtilities = () => {
                             event.stopPropagation();
                             toggleFavorite(card.path);
                           }}
-                          className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${isFavorite
+                          className={`absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                            isFavorite
                               ? "border-amber-400/40 bg-amber-400/15 text-amber-400"
                               : dark
                                 ? "border-zinc-800 bg-zinc-950/70 text-zinc-500 hover:border-amber-400/40 hover:text-amber-300"
                                 : "border-zinc-200 bg-white/90 text-zinc-400 hover:border-amber-400/40 hover:text-amber-500"
-                            }`}
+                          }`}
                         >
                           <svg
                             className="h-5 w-5"
