@@ -242,10 +242,10 @@ const GitCommandBuilder = () => {
 
   // Update state when selection changes
   const handleScenarioChange = (id) => {
-    setSelectedScenarioId(id);
-    const newScenario = SCENARIOS.find(s => s.id === id);
+    const newScenario = SCENARIOS.find((s) => s.id === id) || SCENARIOS[0];
+    setSelectedScenarioId(newScenario.id);
     const newInputs = {};
-    newScenario.inputs.forEach(input => {
+    newScenario.inputs.forEach((input) => {
       newInputs[input.id] = input.default;
     });
     setInputs(newInputs);
