@@ -152,6 +152,11 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/json-yaml-csv-xml",
       },
       {
+        label: "XML Validator & Formatter",
+        description: "Validate syntax and beautify or minify XML data.",
+        path: "/devutilities/xml-validator",
+      },
+      {
         label: "JSON Schema Validator",
         description: "Validate JSON data against a schema",
         path: "/devutilities/json-schema-validator",
