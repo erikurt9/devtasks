@@ -286,6 +286,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/xml-validator</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/cron</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -306,6 +312,12 @@
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/subnet</loc>
     <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/clip-path</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -384,6 +396,18 @@
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/git-builder</loc>
     <lastmod>2026-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/slug-generator</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dev-tasks-beta.vercel.app/devutilities/image-optimizer</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

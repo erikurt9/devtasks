@@ -532,6 +532,8 @@ function AppInner({ toggleHUD, hudVisible }) {
               <Route
                 path="/devutilities/slug-generator"
                 element={<SlugGenerator />}
+              />
+              <Route
                 path="/devutilities/image-optimizer"
                 element={<ImageOptimizer />}
               />
