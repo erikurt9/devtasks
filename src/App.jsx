@@ -546,6 +546,10 @@ function AppInner({ toggleHUD, hudVisible }) {
                 path="/devutilities/api-status-checker"
                 element={<NetworkRequestTester />}
               />
+              <Route
+                path="/devutilities/robots-generator"
+                element={<RobotsTxtGenerator />}
+              />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
