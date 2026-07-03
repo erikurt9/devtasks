@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { toast } from "sonner";
+import SIDEBAR_SECTIONS from "../config/sidebarSections";
 
 const Home = () => {
   const { dark, toggleTheme } = useTheme();
+  const devUtils = SIDEBAR_SECTIONS.find((s) => s.title === "Dev Utilities")?.items || [];
 
   return (
     <div
@@ -457,6 +459,18 @@ const Home = () => {
           </div>
         </div>
       </main>
+
+      {/* Utilities Directory Section (Invisible to users to preserve UI/UX, fully visible to Google/crawlers/screen-readers for indexing) */}
+      <section className="sr-only" aria-label="Dev Utilities Directory">
+        <h2>Explore Dev Utilities</h2>
+        {devUtils
+          .filter((item) => item.path !== "/devutilities")
+          .map((item, index) => (
+            <Link key={index} to={item.path}>
+              {item.label}
+            </Link>
+          ))}
+      </section>
 
       {/* BACKGROUND TEXT */}
       <div className="fixed bottom-0 right-0 pointer-events-none select-none opacity-[0.03] -z-10">
