@@ -53,6 +53,7 @@ import JsonSchemaValidator from "./pages/DevUtilities/devutilities/JsonSchemaVal
 import JsonYamlCsvXmlConverter from "./pages/DevUtilities/devutilities/JsonYamlCsvXmlConverter";
 import JwtDecoder from "./pages/DevUtilities/devutilities/JwtDecoder";
 import JwtEncoder from "./pages/DevUtilities/devutilities/JwtEncoder";
+import XmlValidator from "./pages/DevUtilities/devutilities/XmlValidator";
 import KeycodeInspector from "./pages/DevUtilities/devutilities/KeycodeInspector";
 import LoremIpsumGenerator from "./pages/DevUtilities/devutilities/LoremIpsumGenerator";
 import MarkdownPreviewer from "./pages/DevUtilities/devutilities/MarkdownPreviewer";
@@ -378,6 +379,10 @@ function AppInner({ toggleHUD, hudVisible }) {
                 element={<CssUnitConverter />}
               />
               <Route path="/devutilities/json" element={<JsonFormatter />} />
+              <Route
+                path="/devutilities/xml-validator"
+                element={<XmlValidator />}
+              />
               <Route
                 path="/devutilities/json-yaml-csv-xml"
                 element={<JsonYamlCsvXmlConverter />}

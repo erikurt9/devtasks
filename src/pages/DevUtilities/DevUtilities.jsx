@@ -141,6 +141,27 @@ const DevUtilities = () => {
       path: "/devutilities/json-types-converter",
     },
     {
+      title: "XML Validator & Formatter",
+      description:
+        "Validate syntax and beautify or minify XML data, with exact error line and column details.",
+      path: "/devutilities/xml-validator",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 8l-4 4 4 4m6-8l4 4-4 4M13 6l-2 12"
+          />
+        </svg>
+      ),
+    },
+    {
       title: "JSON YAML CSV XML Converter",
       description:
         "Convert between JSON, YAML, CSV and XML formats in real time with syntax validation.",
