@@ -381,6 +381,10 @@ const SIDEBAR_SECTIONS = [
         description: "Convert raw text into clean, URL-safe slugs with customizable separators, casing, and accent stripping.",
         path: "/devutilities/slug-generator",
       },
+        label: "Image Optimizer",
+        description: "Compress, resize, and convert images to WebP/JPEG/PNG client-side.",
+        path: "/devutilities/image-optimizer",
+      },
     ],
   },
 ];
