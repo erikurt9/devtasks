@@ -1020,6 +1020,27 @@ const DevUtilities = () => {
       ),
     },
     {
+      title: "Docker Configuration Generator",
+      description:
+        "Generate production-ready Dockerfile and docker-compose.yml configurations client-side.",
+      path: "/devutilities/docker-generator",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM4 9h16M8 13h.01M12 13h.01M16 13h.01"
+          />
+        </svg>
+      ),
+    },
+    {
       title: "Word Counter",
       description: "Count characters and words in your text instantly.",
       path: "/devutilities/word-counter",
