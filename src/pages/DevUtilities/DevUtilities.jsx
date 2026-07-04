@@ -965,6 +965,27 @@ const DevUtilities = () => {
       ),
     },
     {
+      title: "CSS Border-Image Generator",
+      description:
+        "Design custom sliced image borders and generate copy-ready CSS properties visually.",
+      path: "/devutilities/border-image",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 8V6a2 2 0 012-2h2m8 0h2a2 2 0 012 2v2m0 8v2a2 2 0 01-2 2h-2m-8 0H6a2 2 0 01-2-2v-2m5-5h6m-6 3h6"
+          />
+        </svg>
+      ),
+    },
+    {
       title: "Password Generator",
       description:
         "Generate secure passwords and analyze entropy, strength, and crack times.",

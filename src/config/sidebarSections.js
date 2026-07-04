@@ -298,6 +298,12 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/css-gradient",
       },
       {
+        label: "CSS Border-Image Generator",
+        description:
+          "Design custom sliced image borders and generate copy-ready CSS properties visually.",
+        path: "/devutilities/border-image",
+      },
+      {
         label: "Glassmorphism Playground",
         description: "Design glassmorphism effects with shadows and blur",
         path: "/devutilities/glassmorphism",
