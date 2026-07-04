@@ -366,6 +366,11 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/design-tokens",
       },
       {
+        label: "Docker Configuration Generator",
+        description: "Generate production-ready Dockerfile and docker-compose.yml configurations client-side.",
+        path: "/devutilities/docker-generator",
+      },
+      {
         label: "Word Counter",
         description: "Character & word count tool",
         path: "/devutilities/word-counter",
