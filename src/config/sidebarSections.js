@@ -199,7 +199,8 @@ const SIDEBAR_SECTIONS = [
       },
       {
         label: "Diff Checker",
-        description: "Compare text differences",
+        description:
+          "Compare text differences or perform structural JSON diffing",
         path: "/devutilities/diff",
       },
       {
@@ -352,7 +353,8 @@ const SIDEBAR_SECTIONS = [
       },
       {
         label: "SVG Optimizer & React JSX Generator",
-        description: "Optimize, clean, and convert SVG code into optimized React JSX/TSX components instantly.",
+        description:
+          "Optimize, clean, and convert SVG code into optimized React JSX/TSX components instantly.",
         path: "/devutilities/svg-optimizer",
       },
       {
@@ -384,7 +386,8 @@ const SIDEBAR_SECTIONS = [
       },
       {
         label: "Docker Configuration Generator",
-        description: "Generate production-ready Dockerfile and docker-compose.yml configurations client-side.",
+        description:
+          "Generate production-ready Dockerfile and docker-compose.yml configurations client-side.",
         path: "/devutilities/docker-generator",
       },
       {
@@ -392,7 +395,7 @@ const SIDEBAR_SECTIONS = [
         description: "Character & word count tool",
         path: "/devutilities/word-counter",
       },
-     
+
       {
         label: "Text List Cleaner",
         description: "Sort, clean, and remove duplicate text lines",
