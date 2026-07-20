@@ -116,6 +116,28 @@ const DevUtilities = () => {
       ),
     },
     {
+      title: "SVG to Data URI Converter",
+      description:
+        "Convert raw SVG markup into optimized CSS background-image statements and data URIs.",
+      keywords: "svg uri css base64 image encode",
+      path: "/devutilities/svg-to-data-uri",
+      icon: (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 9l-3 3 3 3m8-6l3 3-3 3m-3-9l-2 12"
+          />
+        </svg>
+      ),
+    },
+    {
       title: "Morse Code Converter",
       description:
         "Convert text to Morse code and decode Morse code back to text.",

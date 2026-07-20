@@ -363,6 +363,12 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/svg-optimizer",
       },
       {
+        label: "SVG to Data URI Converter",
+        description:
+          "Convert raw SVG markup into optimized CSS background-image statements and data URIs.",
+        path: "/devutilities/svg-to-data-uri",
+      },
+      {
         label: "Password Generator",
         description:
           "Generate secure passwords and analyze entropy, strength, and crack times.",
