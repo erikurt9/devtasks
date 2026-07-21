@@ -221,10 +221,10 @@ const handleDownload = () => {
         dark ? "bg-zinc-950" : "bg-[#F7F7F7]"
       }`}
     >
-      <title>JSON → Types Converter — DevTasks</title>
+      <title>JSON to Types & Zod Converter — DevTasks</title>
       <meta
         name="description"
-        content="Instantly convert JSON objects into TypeScript interfaces/types or Go structs with customizable configurations."
+        content="Instantly convert JSON objects into TypeScript interfaces/types, Go structs, or Zod schemas with customizable configurations."
       />
 
       {/* Background blobs */}
@@ -282,10 +282,10 @@ const handleDownload = () => {
                 dark ? "text-white" : "text-black"
               }`}
             >
-              JSON → Types Converter
+              JSON → Types & Zod Converter
             </h1>
             <p className={`text-xs font-semibold mt-0.5 ${dark ? "text-zinc-500" : "text-neutral-400"}`}>
-              Offline generator for TypeScript interfaces, type aliases, and Go structs
+              Offline generator for TypeScript interfaces, type aliases, Go structs, and Zod schemas
             </p>
           </div>
         </div>
