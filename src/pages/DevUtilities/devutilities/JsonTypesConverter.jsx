@@ -126,6 +126,73 @@ export default function JsonTypesConverter() {
     return structs.trim();
   }
 
+  function generateZodSchema(obj, name) {
+    function toZodType(value) {
+      if (value === null) return "z.any().nullable()";
+      if (Array.isArray(value)) {
+        if (value.length === 0) return "z.array(z.any())";
+        return `z.array(${toZodType(value[0])})`;
+      }
+      if (typeof value === "object") return "z.object";
+      if (typeof value === "string") return "z.string()";
+      if (typeof value === "boolean") return "z.boolean()";
+      if (typeof value === "number") {
+        return Number.isInteger(value) ? "z.number().int()" : "z.number()";
+      }
+      return "z.any()";
+    }
+
+    let schemas = "";
+
+    function parse(current, schemaName) {
+      let body = "";
+
+      Object.entries(current).forEach(([key, value]) => {
+        let schema;
+        if (Array.isArray(value)) {
+          if (value.length > 0 && typeof value[0] === "object") {
+            const child = key.charAt(0).toUpperCase() + key.slice(1);
+            parse(value[0], child);
+            schema = `z.array(${child}Schema)`;
+          } else {
+            schema = toZodType(value);
+          }
+        } else if (typeof value === "object" && value !== null) {
+          const child = key.charAt(0).toUpperCase() + key.slice(1);
+          parse(value, child);
+          schema = `${child}Schema`;
+        } else {
+          schema = toZodType(value);
+        }
+
+        if (zodOptional) {
+          schema += ".optional()";
+        }
+
+        body += `  ${key}: ${schema},\n`;
+      });
+
+      schemas += `const ${schemaName}Schema = z.object({\n${body}});\n\n`;
+    }
+
+    parse(obj, name);
+
+    const parts = [];
+
+    if (zodImport) {
+      parts.push('import { z } from "zod";\n');
+    }
+
+    parts.push(schemas.trim());
+
+    if (zodInferType) {
+      const camelName = name.charAt(0).toLowerCase() + name.slice(1);
+      parts.push(`\nexport type ${name} = z.infer<typeof ${camelName}Schema>;`);
+    }
+
+    return parts.join("\n");
+  }
+
   useEffect(() => {
     if (!jsonInput.trim()) {
       setError("");
@@ -144,7 +211,7 @@ export default function JsonTypesConverter() {
       if (language === "typescript") {
         setOutput(generateTypeScript(parsed, cleanRootName));
       } else if (language === "zod") {
-        setOutput("// Zod generation will be implemented very soon");
+        setOutput(generateZodSchema(parsed, cleanRootName));
       } else {
         setOutput(generateGoStruct(parsed, cleanRootName));
       }
