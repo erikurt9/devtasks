@@ -131,20 +131,14 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/json</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/json-yaml-csv-xml</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/markdown</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -156,13 +150,7 @@
   </url>
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/base64</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/base64-image</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -186,13 +174,7 @@
   </url>
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/jwt</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/jwt-encode</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -228,7 +210,7 @@
   </url>
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/text-case</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -250,12 +232,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/markdown-table-generator</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/url-parser</loc>
     <lastmod>2026-06-27</lastmod>
@@ -292,12 +269,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/string-inspector</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/number-base-converter</loc>
     <lastmod>2026-06-27</lastmod>
@@ -342,7 +314,7 @@
   </url>
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/svg-optimizer</loc>
-    <lastmod>2026-06-27</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -376,12 +348,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/word-counter</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/sql-converter</loc>
     <lastmod>2026-07-01</lastmod>
@@ -466,12 +433,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://dev-tasks-beta.vercel.app/devutilities/text-list-cleaner</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://dev-tasks-beta.vercel.app/devutilities/shape-divider</loc>
     <lastmod>2026-07-16</lastmod>
