@@ -72,9 +72,9 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "Base64 / URL Encoder & Decoder",
+      title: "Base64 & URL Converter Suite",
       description:
-        "Encode and decode Base64 strings and URL components completely offline.",
+        "Encode and decode Base64 strings, URL components, and image files completely offline.",
       path: "/devutilities/base64",
 
       icon: (
@@ -94,10 +94,10 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "SVG Optimizer & React JSX Generator",
+      title: "SVG Toolkit",
       description:
-        "Optimize, clean, and convert SVG code into optimized React JSX/TSX components instantly.",
-      keywords: "jsx react component tsx",
+        "Optimize, clean, and convert SVG code into optimized React JSX/TSX components or Data URIs.",
+      keywords: "jsx react component tsx svg data uri",
       path: "/devutilities/svg-optimizer",
       icon: (
         <svg
@@ -120,7 +120,7 @@ const DevUtilities = () => {
       description:
         "Convert raw SVG markup into optimized CSS background-image statements and data URIs.",
       keywords: "svg uri css base64 image encode",
-      path: "/devutilities/svg-to-data-uri",
+      path: "/devutilities/svg-optimizer",
       icon: (
         <svg
           className="w-6 h-6"
@@ -212,10 +212,10 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "JSON Formatter",
+      title: "JSON & Data Format Suite",
       description:
-        "Validate JSON string formats, structure code outputs, beautify spacing, or minify data.",
-      path: "/devutilities/json",
+        "Format, validate, beautify, minify, and convert JSON, YAML, CSV and XML data.",
+      path: "/devutilities/json-yaml-csv-xml",
       icon: (
         <svg
           className="w-6 h-6"
@@ -360,9 +360,9 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "JWT Decoder",
+      title: "JWT Studio",
       description:
-        "Decode and inspect JSON Web Token header and payload data directly in the browser, completely offline.",
+        "Decode, inspect, edit, sign, and encode JSON Web Token header and payload data offline.",
       path: "/devutilities/jwt",
       icon: (
         <svg
@@ -384,7 +384,7 @@ const DevUtilities = () => {
       title: "JWT Encoder",
       description:
         "Encode and inspect JSON Web Token header and payload data directly in the browser, completely offline.",
-      path: "/devutilities/jwt-encode",
+      path: "/devutilities/jwt",
       icon: (
         <svg
           className="w-6 h-6"
@@ -551,9 +551,9 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "Text Case Converter",
+      title: "Text Processing Suite",
       description:
-        "Convert text into camelCase, snake_case, kebab-case, PascalCase, title case, URL slug, and inspect text metrics.",
+        "Convert string cases, inspect layout metrics, analyze word densities, and clean/sort lists.",
       path: "/devutilities/text-case",
       icon: (
         <svg
@@ -592,27 +592,7 @@ const DevUtilities = () => {
         </svg>
       ),
     },
-    {
-      title: "Base64 Image Encoder & Decoder",
-      description:
-        "Encode images to Base64 strings and decode Base64 back to images. Drag & drop support, fully offline.",
-      path: "/devutilities/base64-image",
-      icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-    },
+
     {
       title: "Timestamp",
       description:
@@ -636,9 +616,9 @@ const DevUtilities = () => {
     },
 
     {
-      title: "Markdown Previewer",
+      title: "Markdown Studio",
       description:
-        "Write markdown and instantly preview rendered HTML output with support for headings, lists, links, code blocks, and more.",
+        "Write markdown and instantly preview rendered HTML output, or build markdown tables visually.",
       path: "/devutilities/markdown",
       icon: (
         <svg
@@ -701,7 +681,7 @@ const DevUtilities = () => {
       title: "Markdown Table Generator",
       description:
         "Build markdown tables visually or convert CSV and TSV data instantly.",
-      path: "/devutilities/markdown-table-generator",
+      path: "/devutilities/markdown",
       icon: (
         <svg
           className="w-6 h-6"
@@ -932,7 +912,7 @@ const DevUtilities = () => {
       title: "String Inspector",
       description:
         "Analyze character, word, sentence, and paragraph counts, byte size, reading/speaking time, and word frequency density.",
-      path: "/devutilities/string-inspector",
+      path: "/devutilities/text-case",
       icon: (
         <svg
           className="w-6 h-6"
@@ -1239,7 +1219,7 @@ const DevUtilities = () => {
     {
       title: "Word Counter",
       description: "Count characters and words in your text instantly.",
-      path: "/devutilities/word-counter",
+      path: "/devutilities/text-case",
       icon: (
         <svg
           className="w-6 h-6"
@@ -1263,7 +1243,7 @@ const DevUtilities = () => {
         "Sort lines, remove duplicates, trim whitespace, and remove empty lines completely offline.",
       keywords:
         "text list sort lines duplicates deduplicate clean trim whitespace",
-      path: "/devutilities/text-list-cleaner",
+      path: "/devutilities/text-case",
       icon: (
         <svg
           className="w-6 h-6"

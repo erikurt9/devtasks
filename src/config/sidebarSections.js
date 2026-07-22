@@ -143,13 +143,8 @@ const SIDEBAR_SECTIONS = [
         description: "Inspect keyboard events in real time.",
       },
       {
-        label: "JSON Formatter",
-        description: "Format and validate JSON",
-        path: "/devutilities/json",
-      },
-      {
-        label: "JSON YAML CSV XML Converter",
-        description: "Convert JSON, YAML, CSV and XML formats",
+        label: "JSON & Data Format Suite",
+        description: "Format, beautify, minify, and convert JSON, YAML, CSV and XML data",
         path: "/devutilities/json-yaml-csv-xml",
       },
       {
@@ -173,14 +168,9 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/sql",
       },
       {
-        label: "Markdown Previewer",
-        description: "Preview markdown syntax",
+        label: "Markdown Studio",
+        description: "Preview markdown syntax and build tables visually",
         path: "/devutilities/markdown",
-      },
-      {
-        label: "Markdown Table Generator",
-        description: "Build markdown tables visually",
-        path: "/devutilities/markdown-table-generator",
       },
       {
         label: "Regex Tester",
@@ -188,14 +178,9 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/regex",
       },
       {
-        label: "Text Case Converter",
-        description: "Convert text into different cases",
+        label: "Text Processing Suite",
+        description: "Convert string cases, inspect text layout, analyze word densities, and sort/clean lists",
         path: "/devutilities/text-case",
-      },
-      {
-        label: "String Inspector",
-        description: "Analyze character, word, sentence, and paragraph counts",
-        path: "/devutilities/string-inspector",
       },
       {
         label: "Diff Checker",
@@ -204,14 +189,9 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/diff",
       },
       {
-        label: "Base64 / URL",
-        description: "Encode and decode",
+        label: "Base64 & URL Converter Suite",
+        description: "Encode/decode text base64, URL components, and image files offline",
         path: "/devutilities/base64",
-      },
-      {
-        label: "Base64 Image",
-        description: "Encode/decode images with Base64",
-        path: "/devutilities/base64-image",
       },
       {
         label: "Morse Code Converter",
@@ -282,13 +262,8 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/bcrypt",
       },
       {
-        label: "JWT Encoder",
-        description: "Create and sign JWT tokens",
-        path: "/devutilities/jwt-encode",
-      },
-      {
-        label: "JWT Decoder",
-        description: "Inspect tokens",
+        label: "JWT Studio",
+        description: "Decode, sign, and encode JWT tokens offline",
         path: "/devutilities/jwt",
       },
       {
@@ -363,16 +338,9 @@ const SIDEBAR_SECTIONS = [
         path: "/devutilities/cron",
       },
       {
-        label: "SVG Optimizer & React JSX Generator",
-        description:
-          "Optimize, clean, and convert SVG code into optimized React JSX/TSX components instantly.",
+        label: "SVG Toolkit",
+        description: "Optimize SVGs, generate React JSX components, and compile Data URIs",
         path: "/devutilities/svg-optimizer",
-      },
-      {
-        label: "SVG to Data URI Converter",
-        description:
-          "Convert raw SVG markup into optimized CSS background-image statements and data URIs.",
-        path: "/devutilities/svg-to-data-uri",
       },
       {
         label: "Password Generator",
@@ -407,18 +375,6 @@ const SIDEBAR_SECTIONS = [
           "Generate production-ready Dockerfile and docker-compose.yml configurations client-side.",
         path: "/devutilities/docker-generator",
       },
-      {
-        label: "Word Counter",
-        description: "Character & word count tool",
-        path: "/devutilities/word-counter",
-      },
-
-      {
-        label: "Text List Cleaner",
-        description: "Sort, clean, and remove duplicate text lines",
-        path: "/devutilities/text-list-cleaner",
-      },
-
       {
         label: "SQL Schema Converter",
         description:
